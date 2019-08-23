@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Parts Parser</title>
     <script src="main.js" defer></script>
 </head>
 <body>
+    <h1>Get Parts From Emails</h1>
     <div>
         <form id='inboundForm'>
-            <textarea rows="10" cols="50" id="emailField">I need a quote for 4 91251A213. One 1234T5, 5 2504T12 and 1961K27! and I need these grainger parts: 432F21, 1234KK22, and 5555k5432.
+            <textarea rows="10" cols="50" placeholder="paste email here" id="emailField">
+
             </textarea>
             <br>
             <input type='button' id='getPartsBtn' value='Get Parts'>
         </form>
         <br>
         <form id="outboundForm">
-            <textarea rows="10" cols="50" id="partCSVField">
-                Part numbers will be here
+            <textarea rows="10" cols="50" placeholder="Part numbers will be here" id="partCSVField">
+            
             </textarea>
         </form>
     </div>
