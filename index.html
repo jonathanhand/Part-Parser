@@ -7,9 +7,10 @@
     <title>Parts Parser</title>
     <script src="main.js" defer></script>
 </head>
-<body>
+<body style="text-align:center">
     <h1>Get Parts From Emails</h1>
     <div>
+      <h2>Email</h2>
         <form id='inboundForm'>
             <textarea rows="10" cols="50" placeholder="paste email here" id="emailField">
 
@@ -18,14 +19,16 @@
             <input type='button' id='getPartsBtn' value='Get Parts'>
         </form>
         <br>
+      <h2>Part Numbers</h2>
         <form id="outboundForm">
-            <textarea rows="10" cols="50" placeholder="Part numbers will be here" id="partCSVField">
+            <textarea rows="20" cols="100" placeholder="Part numbers will be here" id="partCSVField">
             
             </textarea>
         </form>
     </div>
     <div>
             <br>
+      <h2>Line Listing</h2>
                 <textarea rows="10" cols="50" placeholder="Line list will be here" id="lineListField">
                 
                 </textarea>
