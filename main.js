@@ -1,11 +1,13 @@
 const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('click', function(){
     const emailField = document.getElementById('emailField');
+    const dupCheck = document.getElementById('dupCheck').checked;
+    console.log(dupCheck);
     console.log(emailField)
-    parseParts(emailField.value);
+    parseParts(emailField.value, dupCheck);
 
 });
 
-function parseParts(emailText) {
+function parseParts(emailText, dupCheck) {
 const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const patternReg = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const digit = /(\d)/;
@@ -13,8 +15,15 @@ const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const setMatch = new Set(partMatch);
     const setArray = [...setMatch];
     // console.log('set: ' + setArray);
+  if(dupCheck == false) {
+    console.log('executed')
     createCSV(setArray);
     createLineList(setArray);
+  }
+  else {
+    createCSV(partMatch);
+    createLineList(partMatch);
+  }
   
     //working on checking
     const splitEmail = emailText.split(/[\s,]+/);

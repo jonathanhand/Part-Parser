@@ -12,10 +12,11 @@
     <div>
       <h2>Email</h2>
         <form id='inboundForm'>
-            <textarea rows="10" cols="50" placeholder="paste email here" id="emailField">
+            <textarea rows="20" cols="100" placeholder="paste email here" id="emailField">
 
             </textarea>
             <br>
+          <input type='checkbox' id='dupCheck' value='Duplicate'>Show Duplicates</input>
             <input type='button' id='getPartsBtn' value='Get Parts'>
         </form>
         <br>
@@ -26,6 +27,15 @@
             </textarea>
         </form>
     </div>
+  <div>
+    <br>
+      <h2>Part Numbers With Duplicated</h2>
+        <form id="outboundForm">
+            <textarea rows="20" cols="100" placeholder="Part numbers will be here" id="partCSVField">
+            
+            </textarea>
+        </form>
+  </div>
     <div>
             <br>
       <h2>Line Listing</h2>
