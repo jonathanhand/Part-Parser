@@ -13,10 +13,9 @@ const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const digit = /(\d)/;
     const partMatch = emailText.match(pattern);
     const setMatch = new Set(partMatch);
-    const setArray = [...setMatch];
-    // console.log('set: ' + setArray);
+    const setArray = [...setMatch]; //no dupe array
+
   if(dupCheck == false) {
-    console.log('executed')
     createCSV(setArray);
     createLineList(setArray);
   }
@@ -31,29 +30,42 @@ const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
       if (patternReg.test(splitEmail[word]) == true) {
         if(digit.test(splitEmail[word-1]) == true)
           {
-        console.log("PART: " + splitEmail[word] + " QTY: " +                  splitEmail[word-1]);
+        // console.log("PART: " + splitEmail[word] + " QTY: " + splitEmail[word-1]);
           }
         else
         {
-          console.log("PART: " + splitEmail[word] + " QTY: UNKNOWN");
+        //   console.log("PART: " + splitEmail[word] + " QTY: UNKNOWN");
       }
     }
     
     }
 }
 
-function createCSV (partMatch) {
-    var partsCSV = ''
-    let lineNum = 0;
-        for (let i in partMatch) {
-              if (lineNum % 7 == 0) {
-          partsCSV =partsCSV + '\n' + '\n';
-          }
-        partsCSV = partsCSV + partMatch[i] + ',';
-            // console.log(partsCSV)
-          lineNum +=1;
+function createCSV(partMatch) {
+    var partsCSV = ' '
+    let lineNum = 1;
+    for (let i in partMatch) {
+        //if on item number 7, add line break
+        if (lineNum % 7 == 0) {
+            console.log('adding line break after ' + partMatch[i])
+            partsCSV = partsCSV + partMatch[i] + '\n' + '\n';
+
+        }
+        //takes off comma if last part number (less than 7)
+        else {
+            if (i == (partMatch.length - 1)) {
+                partsCSV = partsCSV + partMatch[i]
+                console.log(partMatch[i] + ' is the last part on the line')
+            } else {
+                partsCSV = partsCSV + partMatch[i] + ',';
+                // console.log(partsCSV)
+            }
+        }
+        lineNum += 1;
+
     }
     const partCSVField = document.getElementById('partCSVField');
+    console.log(partsCSV)
     partCSVField.innerHTML = partsCSV;
 }
 
