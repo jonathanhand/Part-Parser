@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,33 +8,36 @@
     <title>Parts Parser</title>
     <script src="main.js" defer></script>
 </head>
+
 <body style="text-align:center">
     <h1>Get Parts From Emails</h1>
     <div>
-      <h2>Email</h2>
+        <h2>Email</h2>
         <form id='inboundForm'>
             <textarea rows="20" cols="100" placeholder="paste email here" id="emailField">
 
             </textarea>
             <br>
-          <input type='checkbox' id='dupCheck' value='Duplicate'>Show Duplicates</input>
+            <input type='checkbox' id='ipixCheck' value='ipix'>IPIX Lines</input>
+            <input type='checkbox' id='dupCheck' value='Duplicate'>Show Duplicates</input>
             <input type='button' id='getPartsBtn' value='Get Parts'>
         </form>
         <br>
-      <h2>Part Numbers</h2>
+        <h2>Part Numbers</h2>
         <form id="outboundForm">
             <textarea rows="20" cols="100" placeholder="Part numbers will be here" id="partCSVField">
-            
+
             </textarea>
         </form>
     </div>
     <div>
-            <br>
-      <h2>Line Listing</h2>
-                <textarea rows="10" cols="50" placeholder="Line list will be here" id="lineListField">
-                
+        <br>
+        <h2>Line Listing</h2>
+        <textarea rows="10" cols="50" placeholder="Line list will be here" id="lineListField">
+
                 </textarea>
     </div>
-    
+
 </body>
+
 </html>

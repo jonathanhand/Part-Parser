@@ -1,43 +1,40 @@
-const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('click', function(){
+const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('click', function () {
     const emailField = document.getElementById('emailField');
     const dupCheck = document.getElementById('dupCheck').checked;
+    const ipixCheck = document.getElementById('ipixCheck').checked;
     console.log(dupCheck);
     console.log(emailField)
-    parseParts(emailField.value, dupCheck);
+    parseParts(emailField.value, dupCheck, ipixCheck);
 
 });
 
-function parseParts(emailText, dupCheck) {
-const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
+function parseParts(emailText, dupCheck, ipixCheck) {
+    const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const patternReg = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const digit = /(\d)/;
     const partMatch = emailText.match(pattern);
     const setMatch = new Set(partMatch);
     const setArray = [...setMatch]; //no dupe array
 
-  if(dupCheck == false) {
-    createCSV(setArray);
-    createLineList(setArray);
-  }
-  else {
-    createCSV(partMatch);
-    createLineList(partMatch);
-  }
-  
-    //working on checking
-    const splitEmail = emailText.split(/[\s,]+/);
-    for(let word in splitEmail) {      
-      if (patternReg.test(splitEmail[word]) == true) {
-        if(digit.test(splitEmail[word-1]) == true)
-          {
-        // console.log("PART: " + splitEmail[word] + " QTY: " + splitEmail[word-1]);
-          }
-        else
-        {
-        //   console.log("PART: " + splitEmail[word] + " QTY: UNKNOWN");
-      }
+    if (dupCheck == false) {
+        createCSV(setArray);
+        createLineList(setArray, ipixCheck);
+    } else {
+        createCSV(partMatch);
+        createLineList(partMatch, ipixCheck);
     }
-    
+
+    //working on quantity
+    const splitEmail = emailText.split(/[\s,]+/);
+    for (let word in splitEmail) {
+        if (patternReg.test(splitEmail[word]) == true) {
+            if (digit.test(splitEmail[word - 1]) == true) {
+                // console.log("PART: " + splitEmail[word] + " QTY: " + splitEmail[word-1]);
+            } else {
+                //   console.log("PART: " + splitEmail[word] + " QTY: UNKNOWN");
+            }
+        }
+
     }
 }
 
@@ -47,7 +44,7 @@ function createCSV(partMatch) {
     for (let i in partMatch) {
         //if on item number 7, add line break
         if (lineNum % 7 == 0) {
-            console.log('adding line break after ' + partMatch[i])
+            // console.log('adding line break after ' + partMatch[i])
             partsCSV = partsCSV + partMatch[i] + '\n' + '\n';
 
         }
@@ -55,7 +52,7 @@ function createCSV(partMatch) {
         else {
             if (i == (partMatch.length - 1)) {
                 partsCSV = partsCSV + partMatch[i]
-                console.log(partMatch[i] + ' is the last part on the line')
+                // console.log(partMatch[i] + ' is the last part on the line')
             } else {
                 partsCSV = partsCSV + partMatch[i] + ',';
                 // console.log(partsCSV)
@@ -65,19 +62,21 @@ function createCSV(partMatch) {
 
     }
     const partCSVField = document.getElementById('partCSVField');
-    console.log(partsCSV)
     partCSVField.innerHTML = partsCSV;
 }
 
-function createLineList (part) {
+function createLineList(part, ipixCheck) {
     const lineListField = document.getElementById('lineListField');
-    lineListField.innerHTML= ' '
-    let i =1
+    lineListField.innerHTML = ' '
+    let i = 1
     for (let j in part) {
-  
-        lineListField.innerHTML += 'Ln ' + i + " - "  + part[j] + '\n'
-        i +=1
-    
+        if (ipixCheck == true) {
+            lineListField.innerHTML += 'Ln ' + i + ":\n" + 'IPIX' + part[j] + '\n'
+        } else {
+            lineListField.innerHTML += 'Ln ' + i + " - " + part[j] + '\n'
+        }
+        i += 1
+
     }
 
 }
