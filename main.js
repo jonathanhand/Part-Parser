@@ -1,3 +1,4 @@
+//get html elements
 const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('click', function () {
     const emailField = document.getElementById('emailField');
     const dupCheck = document.getElementById('dupCheck').checked;
@@ -8,6 +9,7 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
 
 });
 
+//parse the email into arrays
 function parseParts(emailText, dupCheck, ipixCheck) {
     const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const patternReg = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
@@ -16,6 +18,7 @@ function parseParts(emailText, dupCheck, ipixCheck) {
     const setMatch = new Set(partMatch);
     const setArray = [...setMatch]; //no dupe array
 
+    //call functions based on duplicate box
     if (dupCheck == false) {
         createCSV(setArray);
         createLineList(setArray, ipixCheck);
@@ -23,8 +26,9 @@ function parseParts(emailText, dupCheck, ipixCheck) {
         createCSV(partMatch);
         createLineList(partMatch, ipixCheck);
     }
+    duplicateCheck(setArray, partMatch);
 
-    //working on quantity
+    //find the quantity in relation to part number
     const splitEmail = emailText.split(/[\s,]+/);
     for (let word in splitEmail) {
         if (patternReg.test(splitEmail[word]) == true) {
@@ -38,6 +42,7 @@ function parseParts(emailText, dupCheck, ipixCheck) {
     }
 }
 
+//create csv from passed in array
 function createCSV(partMatch) {
     var partsCSV = ' '
     let lineNum = 1;
@@ -65,6 +70,7 @@ function createCSV(partMatch) {
     partCSVField.innerHTML = partsCSV;
 }
 
+
 function createLineList(part, ipixCheck) {
     const lineListField = document.getElementById('lineListField');
     lineListField.innerHTML = ' '
@@ -78,5 +84,27 @@ function createLineList(part, ipixCheck) {
         i += 1
 
     }
+
+}
+
+function duplicateCheck(set, array) {
+    let line = 0;
+    let duplicateAlerts = ''
+    for (let part in set) {
+        line +=1
+        //TODO: stopped here
+        let matchCount = 0;
+        for (let i in array)
+        {
+            if (set[part] == array[i])
+            {
+                matchCount += 1            }
+            if (matchCount > 1) {
+                console.log('Line ' + line + '- duplicate part alert (' + set[part]  + ')'+ '\n')
+                duplicateAlerts += 'Line ' + line + '- duplicate part alert (' + set[part]  + ')'+ '\n';
+            }
+        }
+    }
+    // console.log(duplicateAlerts)
 
 }
