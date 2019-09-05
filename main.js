@@ -1,16 +1,30 @@
+const custCheck = document.getElementById('custCheck');
+custCheck.addEventListener('change', showCust);
+	const custField = document.getElementById('custField');
 //get html elements
 const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('click', function () {
     const emailField = document.getElementById('emailField');
     const dupCheck = document.getElementById('dupCheck').checked;
     const ipixCheck = document.getElementById('ipixCheck').checked;
+    
     console.log(dupCheck);
     console.log(emailField)
-    parseParts(emailField.value, dupCheck, ipixCheck);
+    parseParts(emailField.value, dupCheck, ipixCheck, custCheck, custField);
 
 });
-
+//show custom field
+function showCust() {
+console.log('executed' + custCheck)
+	if (custCheck.checked == true) {
+	custField.style.display = 'inline-block';
+	}
+else {
+custField.style.display = 'none';
+}
+	
+	}
 //parse the email into arrays
-function parseParts(emailText, dupCheck, ipixCheck) {
+function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField) {
     const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const patternReg = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const digit = /(\d)/;
@@ -18,13 +32,15 @@ function parseParts(emailText, dupCheck, ipixCheck) {
     const setMatch = new Set(partMatch);
     const setArray = [...setMatch]; //no dupe array
 
+console.log(custField.value)
+
     //call functions based on duplicate box
     if (dupCheck == false) {
         createCSV(setArray);
-        createLineList(setArray, ipixCheck);
+        createLineList(setArray, ipixCheck, custCheck, custField);
     } else {
         createCSV(partMatch);
-        createLineList(partMatch, ipixCheck);
+        createLineList(partMatch, ipixCheck, custCheck, custField);
     }
     duplicateCheck(setArray, partMatch);
 
@@ -71,14 +87,21 @@ function createCSV(partMatch) {
 }
 
 
-function createLineList(part, ipixCheck) {
+function createLineList(part, ipixCheck, custCheck, custField) {
+	console.log(custField.value)
     const lineListField = document.getElementById('lineListField');
     lineListField.innerHTML = ' '
     let i = 1
     for (let j in part) {
         if (ipixCheck == true) {
             lineListField.innerHTML += 'Ln ' + i + ":\n" + 'IPIX' + part[j] + '\n'
-        } else {
+        } 
+
+else if (custCheck.checked == true) {
+	lineListField.innerHTML += 'Ln ' + i + ":\n" + custField.value + part[j] + '\n'
+}
+
+else {
             lineListField.innerHTML += 'Ln ' + i + " - " + part[j] + '\n'
         }
         i += 1
@@ -92,7 +115,7 @@ function duplicateCheck(set, array) {
     let duplicateAlerts = ''
     for (let part in set) {
         line +=1
-        //TODO: stopped here
+        
         let matchCount = 0;
         for (let i in array)
         {
