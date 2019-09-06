@@ -21,19 +21,30 @@
             <input type='checkbox' id='ipixCheck' value='ipix'>IPIX Lines</input>
             <input type='checkbox' id='dupCheck' value='Duplicate' checked>Show Duplicates</input>
             <input type='checkbox' id='custCheck' value='Custom'>Custom Output</input>
-	    <input type='text' id='custField' placeholder='Custom Output' style='display:none'>
+	          <input type='text' id='custField' placeholder='Custom Output' style='display:none'>
+            <input type='checkbox' id='qtyCheck' value='Qty'>Qty</input>
             <input type='button' id='getPartsBtn' value='Get Parts'>
-
+        
 		
         </form>
+ </div>
+<div id='qtyDiv' style='display:none'>
+<h2>Qty (experimental)</h2>
+        <form id='qtyForm'>
+            <textarea rows="20" cols="20" placeholder="paste qty here" id="qtyField">
+            </textarea>
+            <br>
+        </form>
         <br>
+  </div>
         <h2>Part Numbers</h2>
         <form id="outboundForm">
             <textarea rows="20" cols="100" placeholder="Part numbers will be here" id="partCSVField">
 
             </textarea>
         </form>
-    </div>
+
+   
     <div>
         <br>
         <h2>Line Listing</h2>

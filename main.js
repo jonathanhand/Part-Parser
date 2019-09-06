@@ -1,17 +1,37 @@
 const custCheck = document.getElementById('custCheck');
 custCheck.addEventListener('change', showCust);
+qtyCheck.addEventListener('change', showQty);
 	const custField = document.getElementById('custField');
 //get html elements
 const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('click', function () {
     const emailField = document.getElementById('emailField');
     const dupCheck = document.getElementById('dupCheck').checked;
     const ipixCheck = document.getElementById('ipixCheck').checked;
-    
+    const qtyField = document.getElementById('qtyField');
+    const qtyCheck = document.getElementById('qtyCheck').checked;
     console.log(dupCheck);
-    console.log(emailField)
-    parseParts(emailField.value, dupCheck, ipixCheck, custCheck, custField);
-
+    console.log(emailField);
+    
+    if (qtyField.value != null) {
+          qtyArray = parseQty(qtyField.value);
+          
+    }
+  else {
+    qtyArray = -1
+  }
+  
+    parseParts(emailField.value, dupCheck, ipixCheck, custCheck, custField, qtyArray);
+    
 });
+
+function parseQty(qtyText) {
+    const digitReg = /(\d{1,4})/gim;
+    const qtyMatch = qtyText.match(digitReg);
+  if (qtyMatch != null) {
+      return qtyMatch;
+
+  }
+}
 //show custom field
 function showCust() {
 console.log('executed' + custCheck)
@@ -23,8 +43,19 @@ custField.style.display = 'none';
 }
 	
 	}
+function showQty() {
+console.log('executed qty' + qtyCheck)
+	if (qtyCheck.checked == true) {
+	qtyDiv.style.display = 'inline-block';
+	}
+else {
+qtyDiv.style.display = 'none';
+}
+	
+	}
 //parse the email into arrays
-function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField) {
+function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArray) {
+    console.log(qtyArray)
     const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const patternReg = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const digit = /(\d)/;
@@ -36,10 +67,10 @@ console.log(custField.value)
 
     //call functions based on duplicate box
     if (dupCheck == false) {
-        createCSV(setArray);
+        createCSV(setArray, qtyArray);
         createLineList(setArray, ipixCheck, custCheck, custField);
     } else {
-        createCSV(partMatch);
+        createCSV(partMatch, qtyArray);
         createLineList(partMatch, ipixCheck, custCheck, custField);
     }
     duplicateCheck(setArray, partMatch);
@@ -59,9 +90,12 @@ console.log(custField.value)
 }
 
 //create csv from passed in array
-function createCSV(partMatch) {
+function createCSV(partMatch, qtyArray) {
+  console.log('part len: ' + partMatch.length + 'qty len: ' + qtyArray.length)
     var partsCSV = ' '
     let lineNum = 1;
+    let indexNum = 0;
+    if (qtyArray == null || partMatch.length != qtyArray.length) {
     for (let i in partMatch) {
         //if on item number 7, add line break
         if (lineNum % 7 == 0) {
@@ -80,8 +114,31 @@ function createCSV(partMatch) {
             }
         }
         lineNum += 1;
-
+        indexNum +=1;
     }
+    }
+  else if (partMatch.length == qtyArray.length){
+    for (let i in partMatch) {
+        //if on item number 7, add line break
+        if (lineNum % 6 == 0) {
+            // console.log('adding line break after ' + partMatch[i])
+            partsCSV = partsCSV + partMatch[i] + ' ' + qtyArray[indexNum] +'\n' + '\n';
+
+        }
+        //takes off comma if last part number (less than 7)
+        else {
+            if (i == (partMatch.length - 1)) {
+                partsCSV = partsCSV + partMatch[i]+ ' ' + qtyArray[indexNum]
+                // console.log(partMatch[i] + ' is the last part on the line')
+            } else {
+                partsCSV = partsCSV + partMatch[i] +  ' ' + qtyArray[indexNum] +',';
+                // console.log(partsCSV)
+            }
+        }
+        lineNum += 1;
+        indexNum +=1;
+    }
+  }
     const partCSVField = document.getElementById('partCSVField');
     partCSVField.innerHTML = partsCSV;
 }
