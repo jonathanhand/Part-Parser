@@ -91,7 +91,6 @@ console.log(custField.value)
 
 //create csv from passed in array
 function createCSV(partMatch, qtyArray) {
-  console.log('part len: ' + partMatch.length + 'qty len: ' + qtyArray.length)
     var partsCSV = ' '
     let lineNum = 1;
     let indexNum = 0;
