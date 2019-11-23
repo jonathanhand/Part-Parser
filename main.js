@@ -117,7 +117,7 @@ function createCSV(partMatch, qtyArray) {
     }
     }
 	  else if (partMatch.length == qtyArray.length && qtyCheck.checked == true){
-	  
+	  console.log("qty checked, but empty")
 	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
     for (let i in partMatch) {
         //if on item number 5, add line break
@@ -141,7 +141,8 @@ function createCSV(partMatch, qtyArray) {
     }
   }
   else if (partMatch.length == qtyArray.length){
-	  
+	  	  console.log("qty checked, and numbers")
+
 	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
     for (let i in partMatch) {
         //if on item number 5, add line break
