@@ -116,7 +116,7 @@ function createCSV(partMatch, qtyArray) {
         indexNum +=1;
     }
     }
-	  else if (partMatch.length == qtyArray.length && qtyChecked.checked == true){
+	  else if (partMatch.length == qtyArray.length && qtyCheck.checked == true){
 	  
 	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
     for (let i in partMatch) {
