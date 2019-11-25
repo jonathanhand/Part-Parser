@@ -13,7 +13,7 @@
     <h1>Get McM Parts from Emails</h1>
 <p>If something is broken or you have feedback on how this can be better, slack me @jon hand</p>
     <div>
-        <h2>Email</h2>
+        <h2>Paste Email Here</h2>
         <form id='inboundForm'>
             <textarea rows="20" cols="100" placeholder="paste email here" id="emailField">
 
@@ -21,16 +21,16 @@
             <br>
             <input type='checkbox' id='ipixCheck' value='ipix'>IPIX Lines</input>
             <input type='checkbox' id='dupCheck' value='Duplicate' checked>Show Duplicates</input>
-            <input type='checkbox' id='custCheck' value='Custom'>Custom Output</input>
+            <input type='checkbox' id='custCheck' value='Custom'>Custom Line Output</input>
 	          <input type='text' id='custField' placeholder='Custom Output' style='display:none'>
-            <input type='checkbox' id='qtyCheck' value='Qty'>Qty</input>
+            <input type='checkbox' id='qtyCheck' value='Qty'>Quantity</input>
             <input type='button' id='getPartsBtn' value='Get Parts'>
         
 		
         </form>
  </div>
 <div id='qtyDiv' style='display:none'>
-<h2>Qty (if empty, will add 1 for each)</h2>
+<h2>Paste Quantities (if empty, will add 1 for each)</h2>
         <form id='qtyForm'>
             <textarea rows="5" cols="100" placeholder="paste qty here" id="qtyField">
             </textarea>
@@ -38,7 +38,7 @@
         </form>
         <br>
   </div>
-        <h2>Part Numbers</h2>
+        <h2>Part Numbers Output</h2>
         <form id="outboundForm">
             <textarea rows="20" cols="100" placeholder="Part numbers will be here" id="partCSVField">
 
