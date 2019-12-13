@@ -9,6 +9,7 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
     const ipixCheck = document.getElementById('ipixCheck').checked;
     const qtyField = document.getElementById('qtyField');
     const qtyCheck = document.getElementById('qtyCheck').checked;
+    const tableCheck = document.getElementById('tableCheck').checked;
     console.log(dupCheck);
     console.log(emailField);
     
@@ -20,7 +21,7 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
     qtyArray = -1
   }
   
-    parseParts(emailField.value, dupCheck, ipixCheck, custCheck, custField, qtyArray);
+    parseParts(emailField.value, dupCheck, ipixCheck, custCheck, custField, qtyArray, tableCheck);
     
 });
 
@@ -54,7 +55,7 @@ qtyDiv.style.display = 'none';
 	
 	}
 //parse the email into arrays
-function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArray) {
+function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArray, tableCheck) {
     console.log(qtyArray)
     const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
     const patternReg = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
@@ -67,11 +68,11 @@ console.log(custField.value)
 
     //call functions based on duplicate box
     if (dupCheck == false) {
-        createCSV(setArray, qtyArray);
-        createLineList(setArray, ipixCheck, custCheck, custField);
+        createCSV(setArray, qtyArray,tableCheck);
+        createLineList(setArray, ipixCheck, custCheck, custField,tableCheck);
     } else {
-        createCSV(partMatch, qtyArray);
-        createLineList(partMatch, ipixCheck, custCheck, custField);
+        createCSV(partMatch, qtyArray,tableCheck);
+        createLineList(partMatch, ipixCheck, custCheck, custField,tableCheck);
     }
     duplicateCheck(setArray, partMatch);
 
@@ -85,16 +86,94 @@ console.log(custField.value)
                 //   console.log("PART: " + splitEmail[word] + " QTY: UNKNOWN");
             }
         }
-
     }
+  
 }
 
 //create csv from passed in array
-function createCSV(partMatch, qtyArray) {
+function createCSV(partMatch, qtyArray,tableCheck) {
     var partsCSV = ' '
     let lineNum = 1;
     let indexNum = 0;
+  if (tableCheck == true) {
+    console.log('table checked')
+         if(qtyArray == null) {
+        	  console.log("qty checked, but empty")
+	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
+    for (let i in partMatch) {
+        //if on item number 5, add line break
+        if (lineNum % 5 == 0) {
+            // console.log('adding line break after ' + partMatch[i])
+            partsCSV = partsCSV + partMatch[i] + ' ' + '1'+',' +'\n' + '\n';
 
+        }
+        //takes off comma if last part number (less than 5)
+        else {
+            if (i == (partMatch.length - 1)) {
+                partsCSV = partsCSV + partMatch[i]+ ' ' + '1' + ','
+                // console.log(partMatch[i] + ' is the last part on the line')
+            } else {
+                partsCSV = partsCSV + partMatch[i] +  ' ' + '1' +',';
+                // console.log(partsCSV)
+            }
+        }
+        lineNum += 1;
+        indexNum +=1;
+    }
+        
+      }
+    
+  else if (partMatch.length == qtyArray.length){
+	  	  console.log("qty checked, and numbers")
+
+	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
+    for (let i in partMatch) {
+        //if on item number 5, add line break
+        if (lineNum % 5 == 0) {
+            // console.log('adding line break after ' + partMatch[i])
+            partsCSV = partsCSV + partMatch[i] + ' ' + qtyArray[indexNum] +'\n' + '\n';
+
+        }
+        //takes off comma if last part number (less than 5)
+        else {
+            if (i == (partMatch.length - 1)) {
+                partsCSV = partsCSV + partMatch[i]+ ' ' + qtyArray[indexNum] +','
+                // console.log(partMatch[i] + ' is the last part on the line')
+            } else {
+                partsCSV = partsCSV + partMatch[i] +  ' ' + qtyArray[indexNum] +',';
+                // console.log(partsCSV)
+            }
+        }
+        lineNum += 1;
+        indexNum +=1;
+    }
+  }
+  else {
+        for (let i in partMatch) {
+        //if on item number 7, add line break
+        if (lineNum % 7 == 0) {
+            // console.log('adding line break after ' + partMatch[i])
+            partsCSV = partsCSV + partMatch[i] + '\n' + '\n';
+
+        }
+        //takes off comma if last part number (less than 7)
+        else {
+            if (i == (partMatch.length - 1)) {
+                partsCSV = partsCSV + partMatch[i] + ',';
+                // console.log(partMatch[i] + ' is the last part on the line')
+            } else {
+                partsCSV = partsCSV + partMatch[i] + ',';
+                // console.log(partsCSV)
+            }
+        }
+        lineNum += 1;
+        indexNum +=1;
+    }
+  }
+      
+    
+  }
+else {
     if (qtyCheck.checked == true) {
       if(qtyArray == null) {
         	  console.log("qty checked, but empty")
@@ -172,6 +251,7 @@ function createCSV(partMatch, qtyArray) {
       
 
     }
+
   else {
     for (let i in partMatch) {
         //if on item number 7, add line break
@@ -194,7 +274,7 @@ function createCSV(partMatch, qtyArray) {
         indexNum +=1;
     }
   }
-
+}
     const partCSVField = document.getElementById('partCSVField');
     partCSVField.innerHTML = partsCSV;
 }
