@@ -35,14 +35,14 @@
             <br>
             <input type='checkbox' id='tableCheck' value='tableCheck' >Table View</input><input type='checkbox' id='ipixCheck' value='Duplicate' style='display:none'></input>
             <input type='checkbox' id='dupCheck' value='Duplicate' checked>Show Duplicates</input>
-            <input type='checkbox' id='custCheck' value='Custom'>Custom Line Output</input>
+        <input type='checkbox' id='custCheck' style="display:none;" value='Custom'>Custom Line Output</input>
 	          <input type='text' id='custField' placeholder='Custom Output' style='display:none'>
             <input type='checkbox' id='qtyCheck' value='Qty'>Quantity</input>
             <input type='checkbox' id='uomCheck' value='uom'>Pack Converter</input>
         </br>
     </br>
             <Button type='button' class="buttons" id='getPartsBtn' value='Get Parts'>Get Parts</Button>
-        
+            <button onclick="document.getElementById('revField').value = ''">Clear</button>
 		
         </form>
     </br>
