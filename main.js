@@ -127,9 +127,16 @@ function showUom() {
     qtyDiv.style.display = 'inline-block';
 	}
 else {
+    if (qtyCheck.checked == false) {
   uomDiv.style.display = 'none';
   qtyDiv.style.display = 'none';
   uomConDiv.style.display = 'none';
+    }
+    if (qtyCheck.checked == true) {
+        uomDiv.style.display = 'none';
+        qtyDiv.style.display = 'inline-block';
+        uomConDiv.style.display = 'none';
+          }
 }
 	
 	}
@@ -138,10 +145,10 @@ function showQty() {
 console.log('executed qty' + qtyCheck)
 	if (qtyCheck.checked == true) {
 	qtyDiv.style.display = 'inline-block';
-	}
-else {
-qtyDiv.style.display = 'none';
-}
+    }
+    else if (uomCheck.checked == false && qtyCheck.checked == true)  {
+        qtyDiv.style.display = 'none';
+        }
 	
 	}
 //parse the email into arrays
