@@ -154,8 +154,8 @@ console.log('executed qty' + qtyCheck)
 //parse the email into arrays
 function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArray, tableCheck) {
     console.log(qtyArray)
-    const pattern = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
-    const patternReg = /([1-9])(\d{3,4})([a-z])(\d{1,3})/gim;
+    const pattern = /([1-9])(\d{3,4})([AKTNaktn])(\d{1,3})/gim;
+    const patternReg = /([1-9])(\d{3,4})([AKTNaktn])(\d{1,3})/gim;
     const digit = /(\d)/;
     const partMatch = emailText.match(pattern);
     const setMatch = new Set(partMatch);
