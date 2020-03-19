@@ -33,7 +33,7 @@
             <input type='checkbox' id='custCheck' value='Custom'>Custom Line Output</input>
 	          <input type='text' id='custField' placeholder='Custom Output' style='display:none'>
             <input type='checkbox' id='qtyCheck' value='Qty'>Quantity</input>
-            <input type='checkbox' id='uomCheck' value='uom'>UOM Converter</input>
+            <input type='checkbox' id='uomCheck' value='uom'>Pack Converter</input>
         </br>
     </br>
             <Button type='button' class="buttons" id='getPartsBtn' value='Get Parts'>Get Parts</Button>
@@ -46,7 +46,7 @@
 
 <div id='qtyDiv' style='display:none'>
         <form id='qtyForm'>
-                <label for="qtyField">Quantities:</label>
+                <label for="qtyField">Qty:</label>
             <textarea rows="10" cols="20" placeholder="Paste quantities here (will default to 1's if left empty)." id="qtyField"></textarea>
             <br>
         </form>
@@ -54,7 +54,7 @@
   </div>
 <div id='uomDiv' style='display:none'>
         <form id='uomForm'>
-                <label for="uomField">Unit of Measure:</label>
+                <label for="uomField">UOM:</label>
             <textarea rows="10" cols="20" placeholder="Paste Unit of Meaure Column from McM Table View." id="uomField"></textarea>
             <br>
         </form>
@@ -62,7 +62,7 @@
   </div>
 <div id='uomConDiv' style='display:none'>
         <form id='uomConForm'>
-                <label for="uomConField">Converted Quantities:</label>
+                <label for="uomConField">Converted Qty:</label>
             <textarea rows="10" cols="20" placeholder="Converted quantities will be here." id="uomConField"></textarea>
             <br>
         </form>
