@@ -1,29 +1,77 @@
 const custCheck = document.getElementById('custCheck');
 custCheck.addEventListener('change', showCust);
 qtyCheck.addEventListener('change', showQty);
-	const custField = document.getElementById('custField');
+uomCheck.addEventListener('change', showUom);
+
+const custField = document.getElementById('custField');
 //get html elements
 const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('click', function () {
     const emailField = document.getElementById('emailField');
     const dupCheck = document.getElementById('dupCheck').checked;
     const ipixCheck = document.getElementById('ipixCheck').checked;
     const qtyField = document.getElementById('qtyField');
+    
+    const uomField = document.getElementById('uomField');
+    const uomConField = document.getElementById('uomConField');
+
     const qtyCheck = document.getElementById('qtyCheck').checked;
+    const uomCheck = document.getElementById('uomCheck').checked;
     const tableCheck = document.getElementById('tableCheck').checked;
     console.log(dupCheck);
     console.log(emailField);
-    
+    console.log(uomField);
+  var uomArray = new Array(); 
+var qtyArray = new Array();
     if (qtyField.value != null) {
-          qtyArray = parseQty(qtyField.value);
-          
+          qtyArray = parseQty(qtyField.value);    
     }
   else {
     qtyArray = -1
   }
-  
+    if (uomField.value.trim() != '') {
+      console.log(uomField.value)
+      console.log('uom not null')
+    uomArray = parseUom(uomField.value);
+      
+  }
+  else {
+    console.log('uom null')
+    uomArray.push(-1)
+  }
+  console.log(uomArray)
+  if (uomArray[0] != -1 && uomArray.length == qtyArray.length) {
+    var newQtyArray = convertPacks(uomArray,qtyArray)
+    qtyOut(newQtyArray);
+    parseParts(emailField.value, dupCheck, ipixCheck, custCheck, custField, newQtyArray, tableCheck);
+  }
+  else {
     parseParts(emailField.value, dupCheck, ipixCheck, custCheck, custField, qtyArray, tableCheck);
+  }
     
 });
+
+function qtyOut(newQty) {
+  console.log('outputting converted qty')
+  var qtyOut = ''
+  for (let i in newQty) {
+    qtyOut += newQty[i] + '\n'
+  }
+  uomConField.innerHTML = qtyOut
+}
+
+function convertPacks (uom, qty) {
+  console.log('converting packs')
+  var product = 1
+  var newQtyArray = new Array ()
+  for (let index in uom) {
+    product = qty[index] / uom[index]
+    product = Math.ceil(product)
+    newQtyArray.push(product)
+  }
+  
+  console.log(newQtyArray)
+  return newQtyArray
+}
 
 function parseQty(qtyText) {
     const digitReg = /(\d{1,4})/gim;
@@ -33,6 +81,33 @@ function parseQty(qtyText) {
 
   }
 }
+
+function parseUom(uomText) {
+    uomText = uomText.trim()
+    const digitReg = /(\d{1,4})/gim;
+  uomLines = uomText.split('\n')
+  var uomMatch = new Array()
+
+    for (let line in uomLines) {
+      uomLines[line] = uomLines[line].trim()
+      console.log(uomLines[line]);
+      
+      if(uomLines[line] == "Each" || uomLines[line] == "Pairs"){
+        uomMatch.push(1);
+      }
+      else {
+        uomMatch.push(parseInt(uomLines[line].match(digitReg)));
+      }
+      }
+    if (uomMatch.length > 0 && isNaN(uomMatch[0]) != true) {
+      return uomMatch;
+    }
+      else {
+        return -1;
+      }
+      
+
+  }
 //show custom field
 function showCust() {
 console.log('executed' + custCheck)
@@ -44,6 +119,21 @@ custField.style.display = 'none';
 }
 	
 	}
+
+function showUom() {
+	if (uomCheck.checked == true) {
+	uomDiv.style.display = 'inline-block';
+    uomConDiv.style.display = 'inline-block';
+    qtyDiv.style.display = 'inline-block';
+	}
+else {
+  uomDiv.style.display = 'none';
+  qtyDiv.style.display = 'none';
+  uomConDiv.style.display = 'none';
+}
+	
+	}
+
 function showQty() {
 console.log('executed qty' + qtyCheck)
 	if (qtyCheck.checked == true) {
@@ -89,7 +179,6 @@ console.log(custField.value)
     }
   
 }
-
 //create csv from passed in array
 function createCSV(partMatch, qtyArray,tableCheck) {
     var partsCSV = ' '
@@ -174,7 +263,7 @@ function createCSV(partMatch, qtyArray,tableCheck) {
     
   }
 else {
-    if (qtyCheck.checked == true) {
+    if (qtyCheck.checked == true || uomCheck.checked == true) {
       if(qtyArray == null) {
         	  console.log("qty checked, but empty")
 	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
@@ -278,7 +367,6 @@ else {
     const partCSVField = document.getElementById('partCSVField');
     partCSVField.innerHTML = partsCSV;
 }
-
 
 function createLineList(part, ipixCheck, custCheck, custField) {
 	console.log(custField.value)

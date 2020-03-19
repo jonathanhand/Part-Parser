@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Table View</title>
+    <script src="tables.js" defer></script>
+<link rel="stylesheet" type="text/css" href="tables.css">
+</head>
+<body><div>
+    <a href="index.html"><button style="float: right;">Part Parser</button></a>
+</br>
+   <h1 >Make Tables</h1>
+  </div>
+   <div>
+        <form id='revForm'>
+            <label for="revField">Table View:</label>
+
+            <textarea rows="20" cols="100" placeholder="Paste all from McMaster Table View" id="revField"></textarea>
+            <br>
+
+          <!--
+            <input type='checkbox' id='lineCheck' value='lineCheck'>Line Number
+            <input type='checkbox' id='descriptionCheck' value='descriptionCheck' checked>Description
+            <input type='checkbox' id='qtyCheck' value='qtyCheck'>Quantity
+            <input type='checkbox' id='availCheck' value='availCheck'>Availability
+          -->
+          <br>
+                      <input type="button" class="buttons" id='makeTableBtn' value='Create Table'>
+                      <button onclick="document.getElementById('revField').value = ''">Clear</button>
+
+        </form>
+    </div>
+    <h1>Table Output:</h1>
+        <br>
+        <br>
+<br>
+  <table id='wholeTable'>
+    <thead>
+    <tr>
+    <th id='lineHeader'>Line</th>
+     <th>Part Number</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Unit of Measure</th>
+    <th>Quantity</th>
+      
+      
+    
+      <th>Availability</th>
+    
+      <th>Line Price</th>
+  </tr>
+      </thead>
+    <tbody id='tableOutput'>
+    </tbody>
+  </table>
+    <br>
+    <br>
+  <!-- <button onclick="copyTable()">Copy table</button> -->
+<!--   <div>
+    <h2>Json Output</h2>
+      
+    <textarea rows="20" cols="100" placeholder="table will output here" id="tableField">
+    </textarea>
+
+</div> -->
+</body>
+</html>

@@ -1,0 +1,26 @@
+* {
+    font-family:"FuturaStd-Book","Segoe UI","Segoe","Tahoma,Helvetica,Arial,sans-serif";
+    color: #4d4d4d;
+}
+h1 {
+    font-size:42px;
+    display:block; 
+    color: #4d4d4d;
+    filter:contrast(8.45);
+}
+button {
+    color:black;
+    background-color:rgb(251, 255, 30);
+    font-size:24px;
+    font-weight:bold;
+    border-radius:12px;
+}
+label {
+    font-size:26px;
+    display:block; 
+    color: #4d4d4d;
+    filter:contrast(8.45);
+}
+a {
+   text-decoration: none; 
+}

@@ -3,65 +3,84 @@
 
 <head>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157949424-2"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157949424-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-157949424-2');
+  gtag('config', 'UA-157949424-1');
 </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Parts Parser</title>
+    <link rel = "stylesheet" type= "text/css" href = "style.css"/>
     <script src="main.js" defer></script>
 </head>
 
 <body style="text-align:center">
-    <h1>Get McM Parts from Emails</h1>
-<p>If something is broken or you have feedback on how this can be better, slack me @jon hand</p>
+        <a href="tables.html"><button style="float: right;">Make Tables</button></a>
+</br>
+        <h1>Part Parser</h1>
     <div>
-        <h2>Paste Email Here</h2>
         <form id='inboundForm'>
-            <textarea rows="20" cols="100" placeholder="paste email here" id="emailField">
-
-            </textarea>
+            <label for="emailField">Text:</label>
+            <textarea rows="20" cols="100" placeholder="Paste Text Here" id="emailField"></textarea>
             <br>
             <input type='checkbox' id='tableCheck' value='tableCheck' >Table View</input><input type='checkbox' id='ipixCheck' value='Duplicate' style='display:none'></input>
             <input type='checkbox' id='dupCheck' value='Duplicate' checked>Show Duplicates</input>
             <input type='checkbox' id='custCheck' value='Custom'>Custom Line Output</input>
 	          <input type='text' id='custField' placeholder='Custom Output' style='display:none'>
             <input type='checkbox' id='qtyCheck' value='Qty'>Quantity</input>
-            <input type='button' id='getPartsBtn' value='Get Parts'>
+            <input type='checkbox' id='uomCheck' value='uom'>UOM Converter</input>
+        </br>
+    </br>
+            <Button type='button' class="buttons" id='getPartsBtn' value='Get Parts'>Get Parts</Button>
         
 		
         </form>
+    </br>
+</br>
  </div>
+
 <div id='qtyDiv' style='display:none'>
-<h2>Paste Quantities (if empty, will add 1 for each)</h2>
         <form id='qtyForm'>
-            <textarea rows="5" cols="100" placeholder="paste qty here" id="qtyField">
-            </textarea>
+                <label for="qtyField">Quantities:</label>
+            <textarea rows="10" cols="20" placeholder="Paste quantities here (will default to 1's if left empty)." id="qtyField"></textarea>
             <br>
         </form>
         <br>
   </div>
-        <h2>Part Numbers Output</h2>
-        <form id="outboundForm">
-            <textarea rows="20" cols="100" placeholder="Part numbers will be here" id="partCSVField">
-
-            </textarea>
+<div id='uomDiv' style='display:none'>
+        <form id='uomForm'>
+                <label for="uomField">Unit of Measure:</label>
+            <textarea rows="10" cols="20" placeholder="Paste Unit of Meaure Column from McM Table View." id="uomField"></textarea>
+            <br>
         </form>
-
+        <br>
+  </div>
+<div id='uomConDiv' style='display:none'>
+        <form id='uomConForm'>
+                <label for="uomConField">Converted Quantities:</label>
+            <textarea rows="10" cols="20" placeholder="Converted quantities will be here." id="uomConField"></textarea>
+            <br>
+        </form>
+        <br>
+  </div>
+        <form id="outboundForm">
+                <label for="partCSVField">Part Numbers in Memo Format:</label>
+            <textarea rows="20" cols="100" placeholder="Part numbers will be listed here separated into lines to copy." id="partCSVField"></textarea>
+        </form>
+    </br>
+</br>
    
     <div>
         <br>
-        <h2>Line Listing</h2>
-        <textarea rows="10" cols="50" placeholder="Line list will be here" id="lineListField">
-
-                </textarea>
+        <form id="lineListForm">
+        <label for="lineListField">Line Listing:</label>
+        <textarea rows="20" cols="100" placeholder="Lines will be listed here" id="lineListField"></textarea>
+    </form>
     </div>
 
 </body>
