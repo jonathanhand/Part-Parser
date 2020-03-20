@@ -19,7 +19,7 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
     const uomCheck = document.getElementById('uomCheck').checked;
     const tableCheck = document.getElementById('tableCheck').checked;
     console.log(dupCheck);
-    console.log(emailField);
+    console.log(emailField.value);
     console.log(uomField);
   var uomArray = new Array(); 
 var qtyArray = new Array();
@@ -162,7 +162,7 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
     const setMatch = new Set(partMatch);
     const setArray = [...setMatch]; //no dupe array
 
-console.log(custField.value)
+console.log(emailText)
 
     //call functions based on duplicate box
     if (dupCheck == false) {
@@ -331,10 +331,10 @@ else {
     }
   }
   else {
-        tableCSV = tableCSV + partMatch[i] + ',';
+        
 
         for (let i in partMatch) {
-
+            tableCSV = tableCSV + partMatch[i] + ',';
         //if on item number 7, add line break
         if (lineNum % 7 == 0) {
             // console.log('adding line break after ' + partMatch[i])
