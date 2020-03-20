@@ -340,10 +340,8 @@ else {
     }
   }
   else {
-        
-
         for (let i in partMatch) {
-            tableCSV = tableCSV + partMatch[i] + ',';
+            tableCSV = tableCSV + partMatch[i] + ' 1,';
         //if on item number 7, add line break
         if (lineNum % 7 == 0) {
             // console.log('adding line break after ' + partMatch[i])
@@ -373,7 +371,7 @@ else {
 
   else {
     for (let i in partMatch) {
-        tableCSV = tableCSV + partMatch[i] + ',';
+        tableCSV = tableCSV + partMatch[i] + ' 1,';
         //if on item number 7, add line break
         if (lineNum % 7 == 0) {
             // console.log('adding line break after ' + partMatch[i])
