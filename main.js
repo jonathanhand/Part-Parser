@@ -3,6 +3,7 @@ custCheck.addEventListener('change', showCust);
 qtyCheck.addEventListener('change', showQty);
 uomCheck.addEventListener('change', showUom);
 
+
 const custField = document.getElementById('custField');
 //get html elements
 const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('click', function () {

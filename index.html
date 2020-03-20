@@ -33,10 +33,11 @@
             <label for="emailField">Text:</label>
             <textarea rows="20" cols="100" placeholder="Paste Text Here" id="emailField"></textarea>
             <br>
-            <input type='checkbox' id='tableCheck' value='tableCheck' >Table View</input><input type='checkbox' id='ipixCheck' value='Duplicate' style='display:none'></input>
+            <input type='checkbox' id='tableCheck' value='tableCheck' style="display:none;" ></input>
+            <input type='checkbox' id='ipixCheck' value='Duplicate' style='display:none'></input>
             <input type='checkbox' id='dupCheck' value='Duplicate' checked>Show Duplicates</input>
-        <input type='checkbox' id='custCheck' style="display:none;" value='Custom'>Custom Line Output</input>
-	          <input type='text' id='custField' placeholder='Custom Output' style='display:none'>
+        <input type='checkbox' id='custCheck' style="display:none;" value='Custom'></input>
+	          <input type='text' id='custField' placeholder='Custom Output' style='display:none'></input>
             <input type='checkbox' id='qtyCheck' value='Qty'>Quantity</input>
             <input type='checkbox' id='uomCheck' value='uom'>Pack Converter</input>
         </br>
@@ -87,7 +88,15 @@
         <textarea rows="20" cols="100" placeholder="Lines will be listed here" id="lineListField"></textarea>
     </form>
     </div>
-
+</br>
+</br>
+    <div>
+    <form id="tableCSVForm">
+            <label for="tableCSVField">Part Numbers in Table View Format:</label>
+        <textarea rows="20" cols="100" placeholder="Part numbers will be listed here formatted for McM.com Table View." id="tableCSVField"></textarea>
+    </form>
+    </div>
+</br>
 </body>
 
 </html>
