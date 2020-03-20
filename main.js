@@ -190,6 +190,7 @@ console.log(custField.value)
 //create csv from passed in array
 function createCSV(partMatch, qtyArray,tableCheck) {
     var partsCSV = ' '
+    var tableCSV = ' '
     let lineNum = 1;
     let indexNum = 0;
   if (tableCheck == true) {
@@ -276,6 +277,7 @@ else {
         	  console.log("qty checked, but empty")
 	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
     for (let i in partMatch) {
+        tableCSV = tableCSV + partMatch[i] + ' 1,'
         //if on item number 5, add line break
         if (lineNum % 5 == 0) {
             // console.log('adding line break after ' + partMatch[i])
@@ -286,9 +288,11 @@ else {
         else {
             if (i == (partMatch.length - 1)) {
                 partsCSV = partsCSV + partMatch[i]+ ' ' + '1'
+
                 // console.log(partMatch[i] + ' is the last part on the line')
             } else {
                 partsCSV = partsCSV + partMatch[i] +  ' ' + '1' +',';
+
                 // console.log(partsCSV)
             }
         }
@@ -303,6 +307,7 @@ else {
 
 	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
     for (let i in partMatch) {
+        tableCSV = tableCSV + partMatch[i] +  ' ' + qtyArray[indexNum] +','
         //if on item number 5, add line break
         if (lineNum % 5 == 0) {
             // console.log('adding line break after ' + partMatch[i])
@@ -313,9 +318,11 @@ else {
         else {
             if (i == (partMatch.length - 1)) {
                 partsCSV = partsCSV + partMatch[i]+ ' ' + qtyArray[indexNum]
+
                 // console.log(partMatch[i] + ' is the last part on the line')
             } else {
                 partsCSV = partsCSV + partMatch[i] +  ' ' + qtyArray[indexNum] +',';
+
                 // console.log(partsCSV)
             }
         }
@@ -324,20 +331,26 @@ else {
     }
   }
   else {
+        tableCSV = tableCSV + partMatch[i] + ',';
+
         for (let i in partMatch) {
+
         //if on item number 7, add line break
         if (lineNum % 7 == 0) {
             // console.log('adding line break after ' + partMatch[i])
             partsCSV = partsCSV + partMatch[i] + '\n' + '\n';
+
 
         }
         //takes off comma if last part number (less than 7)
         else {
             if (i == (partMatch.length - 1)) {
                 partsCSV = partsCSV + partMatch[i]
+
                 // console.log(partMatch[i] + ' is the last part on the line')
             } else {
                 partsCSV = partsCSV + partMatch[i] + ',';
+
                 // console.log(partsCSV)
             }
         }
@@ -351,6 +364,7 @@ else {
 
   else {
     for (let i in partMatch) {
+        tableCSV = tableCSV + partMatch[i] + ',';
         //if on item number 7, add line break
         if (lineNum % 7 == 0) {
             // console.log('adding line break after ' + partMatch[i])
@@ -374,6 +388,10 @@ else {
 }
     const partCSVField = document.getElementById('partCSVField');
     partCSVField.innerHTML = partsCSV;
+
+    const tableCSVField = document.getElementById('tableCSVField');
+    tableCSVField.innerHTML = tableCSV;
+
 }
 
 function createLineList(part, ipixCheck, custCheck, custField) {
