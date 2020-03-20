@@ -143,14 +143,23 @@ else {
 	}
 
 function showQty() {
-console.log('executed qty' + qtyCheck)
-	if (qtyCheck.checked == true) {
+    const qtyCheck = document.getElementById('qtyCheck').checked;
+    const uomCheck = document.getElementById('uomCheck').checked;
+console.log(' qty ' + qtyCheck)
+console.log('uom  ' + uomCheck)
+	if (qtyCheck == true) {
 	qtyDiv.style.display = 'inline-block';
     }
-    else if (uomCheck.checked == false && qtyCheck.checked == true)  {
-        qtyDiv.style.display = 'none';
+    else if (qtyCheck == false) {
+        if (uomCheck == true) {
+            qtyDiv.style.display = 'inline-block';
         }
-	
+        else {
+            qtyDiv.style.display = 'none';
+
+        }
+    
+    }
 	}
 //parse the email into arrays
 function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArray, tableCheck) {
