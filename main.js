@@ -342,7 +342,7 @@ else {
     }
   }
   else {
-      window.alert("Number of quantities does not match the number of parts.\n \n Please verify each part number has a quantity. \n \n");
+      window.alert("Number of quantities does not match the number of parts.\n \n Please verify each part number is a McMaster part number and each part number has a quantity. \n \n");
         for (let i in partMatch) {
             tableCSV = tableCSV + partMatch[i] + ' 1,';
         //if on item number 7, add line break
