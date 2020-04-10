@@ -5,8 +5,10 @@ uomCheck.addEventListener('change', showUom);
 
 
 const custField = document.getElementById('custField');
+const alert = document.getElementById('alert-text');
 //get html elements
 const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('click', function () {
+    alert.style.display = "inline-block";
     const emailField = document.getElementById('emailField');
     const dupCheck = document.getElementById('dupCheck').checked;
     const ipixCheck = document.getElementById('ipixCheck').checked;
