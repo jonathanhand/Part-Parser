@@ -24,3 +24,11 @@ label {
 a {
    text-decoration: none; 
 }
+
+.alert-text {
+    display: none;
+    color:Red;
+}
+body {
+    text-align: center;
+}

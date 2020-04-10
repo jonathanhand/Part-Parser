@@ -19,7 +19,7 @@
     <script src="main.js" defer></script>
 </head>
 
-<body style="text-align:center">
+<body>
         <a href="tables.html"><button style="float: right;">Make Tables</button></a>
 </br>
 </br>
@@ -73,20 +73,24 @@
         </form>
         <br>
   </div>
+
+    <div>
+    </br>
+        <p1 class="alert-text">Check customer lines with the lines below to ensure line integrity!</p1>
+</br>
+        <form id="lineListForm">
+        <label for="lineListField">Part Numbers by Line</label>
+        <textarea rows="20" cols="100" placeholder="Use this to check that each line matches the customer email/spreadsheet." id="lineListField"></textarea>
+    </form>
+    </div>
+    <div>
         <form id="outboundForm">
                 <label for="partCSVField">Part Numbers in Memo Format:</label>
             <textarea rows="20" cols="100" placeholder="Part numbers will be here in memo format. Copy one line at a time and paste into memo." id="partCSVField"></textarea>
         </form>
     </br>
 </br>
-   
-    <div>
-        <br>
-        <form id="lineListForm">
-        <label for="lineListField">Part Numbers by Line</label>
-        <textarea rows="20" cols="100" placeholder="Use this to check that each line matches the customer email/spreadsheet." id="lineListField"></textarea>
-    </form>
-    </div>
+  </div>
 </br>
 </br>
 
