@@ -23,16 +23,28 @@
         <a href="tables.html"><button style="float: right;">Make Tables</button></a>
 </br>
 </br>
-
-
     </br>
         <h1>Part Parser</h1>
+        <div style="display:flex;">
     <div>
         <form id='inboundForm'>
             <label for="emailField">Text:</label>
-            <textarea rows="20" cols="50" placeholder="Paste all of the email text or spreadsheet text here." id="emailField"></textarea>
-            <br>
-            <input type='checkbox' id='tableCheck' value='tableCheck' style="display:none;" ></input>
+            <textarea rows="15" cols="50" placeholder="Paste all of the email text or spreadsheet text here." id="emailField"></textarea>
+        </form>
+
+ </div>
+
+<div id='qtyDiv'>
+        <form id='qtyForm'>
+                <label for="qtyField">Qty:</label>
+            <textarea rows="15" cols="50" placeholder="Paste quantities here (will default to 1's if left empty)." id="qtyField"></textarea>
+        </form>
+
+  </div>
+</div>
+</br>
+<div>
+    <input type='checkbox' id='tableCheck' value='tableCheck' style="display:none;" ></input>
             <input type='checkbox' id='ipixCheck' value='Duplicate' style='display:none'></input>
             <input type='checkbox' id='dupCheck' value='Duplicate' checked>Show Duplicates</input>
         <input type='checkbox' id='custCheck' style="display:none;" value='Custom'></input>
@@ -44,19 +56,8 @@
             <Button type='button' class="buttons" id='getPartsBtn' value='Get Parts'>Get Parts</Button>
             <button onclick="document.getElementById('revField').value = ''">Clear</button>
 		
-        </form>
-    </br>
-</br>
- </div>
+</div>
 
-<div id='qtyDiv'>
-        <form id='qtyForm'>
-                <label for="qtyField">Qty:</label>
-            <textarea rows="20" cols="50" placeholder="Paste quantities here (will default to 1's if left empty)." id="qtyField"></textarea>
-            <br>
-        </form>
-        <br>
-  </div>
 <div id='uomDiv' style='display:none'>
         <form id='uomForm'>
                 <label for="uomField">UOM:</label>
@@ -83,6 +84,8 @@
         <textarea rows="20" cols="100" placeholder="Use this to check that each line matches the customer email/spreadsheet." id="lineListField"></textarea>
     </form>
     </div>
+</br>
+</br>
     <div>
         <form id="outboundForm">
                 <label for="partCSVField">Part Numbers in Memo Format:</label>
