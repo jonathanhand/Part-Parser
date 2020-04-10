@@ -45,6 +45,7 @@ function parseRev (revVal, availCheck) {
   }
 }
 else{
+  document.querySelectorAll('table td:nth-child(1)').style.display = "none";
   for (let line=0; line < lineSplit.length-2; line++) { 
     let split = lineSplit[line].split(tabPattern)
     lineArray[line] = split.slice();

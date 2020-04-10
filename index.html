@@ -23,7 +23,6 @@
         <a href="tables.html"><button style="float: right;">Make Tables</button></a>
 </br>
 </br>
-<a href="https://www.mcmaster.com/orders" target="_blank" style="float: right;">MCM Table View</a>
 
 
     </br>
@@ -31,14 +30,14 @@
     <div>
         <form id='inboundForm'>
             <label for="emailField">Text:</label>
-            <textarea rows="20" cols="100" placeholder="Paste Text Here" id="emailField"></textarea>
+            <textarea rows="20" cols="50" placeholder="Paste all of the email text or spreadsheet text here." id="emailField"></textarea>
             <br>
             <input type='checkbox' id='tableCheck' value='tableCheck' style="display:none;" ></input>
             <input type='checkbox' id='ipixCheck' value='Duplicate' style='display:none'></input>
             <input type='checkbox' id='dupCheck' value='Duplicate' checked>Show Duplicates</input>
         <input type='checkbox' id='custCheck' style="display:none;" value='Custom'></input>
 	          <input type='text' id='custField' placeholder='Custom Output' style='display:none'></input>
-            <input type='checkbox' id='qtyCheck' value='Qty'>Quantity</input>
+            <input type='checkbox' id='qtyCheck' value='Qty' checked>Quantity</input>
             <input type='checkbox' id='uomCheck' value='uom'>Pack Converter</input>
         </br>
     </br>
@@ -50,7 +49,7 @@
 </br>
  </div>
 
-<div id='qtyDiv' style='display:none'>
+<div id='qtyDiv'>
         <form id='qtyForm'>
                 <label for="qtyField">Qty:</label>
             <textarea rows="10" cols="20" placeholder="Paste quantities here (will default to 1's if left empty)." id="qtyField"></textarea>
@@ -61,7 +60,7 @@
 <div id='uomDiv' style='display:none'>
         <form id='uomForm'>
                 <label for="uomField">UOM:</label>
-            <textarea rows="10" cols="20" placeholder="Paste Unit of Meaure Column from McM Table View." id="uomField"></textarea>
+            <textarea rows="10" cols="20" placeholder="Paste Unit of Measure Column from McM Table View." id="uomField"></textarea>
             <br>
         </form>
         <br>
@@ -76,7 +75,7 @@
   </div>
         <form id="outboundForm">
                 <label for="partCSVField">Part Numbers in Memo Format:</label>
-            <textarea rows="20" cols="100" placeholder="Part numbers will be listed here separated into lines to copy." id="partCSVField"></textarea>
+            <textarea rows="20" cols="100" placeholder="Part numbers will be here in memo format. Copy one line at a time and paste into memo." id="partCSVField"></textarea>
         </form>
     </br>
 </br>
@@ -84,18 +83,24 @@
     <div>
         <br>
         <form id="lineListForm">
-        <label for="lineListField">Line Listing:</label>
-        <textarea rows="20" cols="100" placeholder="Lines will be listed here" id="lineListField"></textarea>
+        <label for="lineListField">Part Numbers by Line</label>
+        <textarea rows="20" cols="100" placeholder="Use this to check that each line matches the customer email/spreadsheet." id="lineListField"></textarea>
     </form>
     </div>
 </br>
 </br>
+
     <div>
+
     <form id="tableCSVForm">
+        
             <label for="tableCSVField">Part Numbers in Table View Format:</label>
-        <textarea rows="20" cols="100" placeholder="Part numbers will be listed here formatted for McM.com Table View." id="tableCSVField"></textarea>
+        <textarea rows="20" cols="100" placeholder="Part numbers will be listed here formatted to paste into McM.com Order Page." id="tableCSVField"></textarea>
     </form>
     </div>
+</br>
+    <a href="https://www.mcmaster.com/orders" target="_blank" ><button>McM Order Page</button></a>
+
 </br>
 </body>
 
