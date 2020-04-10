@@ -30,13 +30,13 @@
         <div class="container">
     <div>
         <form id='inboundForm'>
-            <label for="emailField">Text:</label>
+            <label for="emailField" style="padding-left: 10px;">Text:</label>
             <textarea rows="15" cols="40" placeholder="Paste all of the email text or spreadsheet text here." id="emailField"></textarea>
         </form>
  </div>
 <div id='qtyDiv'>
         <form id='qtyForm'>
-                <label for="qtyField">Qty:</label>
+                <label for="qtyField"style="padding-left: 10px;">Qty:</label>
             <textarea rows="15" cols="40" placeholder="Paste quantities here (will default to 1's if left empty)." id="qtyField"></textarea>
         </form>
 </div>
@@ -52,7 +52,6 @@
             <input type='checkbox' id='qtyCheck' value='Qty' checked>Quantity</input>
             <input type='checkbox' id='uomCheck' value='uom'>Pack Converter</input>
         </br>
-    </br>
             <Button type='button' class="buttons" id='getPartsBtn' value='Get Parts'>Get Parts</Button>
             <button onclick="document.getElementById('revField').value = ''">Clear</button>
 		
