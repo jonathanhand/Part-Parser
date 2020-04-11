@@ -1,3 +1,28 @@
+function clearAll () {
+var elements = document.getElementsByTagName("input");
+var elements2 = document.getElementsByTagName('textarea');
+const emailField = document.getElementById('emailField');
+const qtyField = document.getElementById('qtyField');
+
+const lineListField = document.getElementById('lineListField');
+const partCSVField = document.getElementById('partCSVField');
+const tableCSVField = document.getElementById('tableCSVField');
+
+
+emailField.value = '';
+qtyField.value = '';
+lineListField.value = '';
+partCSVField.value = '';
+tableCSVField.value = '';
+
+for (var ii=0; ii < elements.length; ii++) {
+  if (elements[ii].type == "text") {
+    elements[ii].value = "";
+  }
+}
+
+}
+
 const custCheck = document.getElementById('custCheck');
 const placeCheck = document.getElementById('placeCheck');
 
