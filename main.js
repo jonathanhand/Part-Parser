@@ -1,8 +1,11 @@
 const custCheck = document.getElementById('custCheck');
+const placeCheck = document.getElementById('placeCheck');
+
+
 custCheck.addEventListener('change', showCust);
 qtyCheck.addEventListener('change', showQty);
 uomCheck.addEventListener('change', showUom);
-
+placeCheck.addEventListener('change', showPlace);
 
 const custField = document.getElementById('custField');
 const alert = document.getElementById('alert-text');
@@ -20,9 +23,9 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
     const qtyCheck = document.getElementById('qtyCheck').checked;
     const uomCheck = document.getElementById('uomCheck').checked;
     const tableCheck = document.getElementById('tableCheck').checked;
-    console.log(dupCheck);
-    console.log(emailField.value);
-    console.log(uomField);
+
+
+
   var uomArray = new Array(); 
 var qtyArray = new Array();
     if (qtyField.value != null) {
@@ -32,16 +35,13 @@ var qtyArray = new Array();
     qtyArray = -1
   }
     if (uomField.value.trim() != '') {
-      console.log(uomField.value)
-      console.log('uom not null')
+
     uomArray = parseUom(uomField.value);
       
   }
   else {
-    console.log('uom null')
     uomArray.push(-1)
   }
-  console.log(uomArray)
   if (uomArray[0] != -1 && uomArray.length == qtyArray.length) {
     var newQtyArray = convertPacks(uomArray,qtyArray)
     qtyOut(newQtyArray);
@@ -54,7 +54,6 @@ var qtyArray = new Array();
 });
 
 function qtyOut(newQty) {
-  console.log('outputting converted qty')
   var qtyOut = ''
   for (let i in newQty) {
     qtyOut += newQty[i] + '\n'
@@ -63,7 +62,6 @@ function qtyOut(newQty) {
 }
 
 function convertPacks (uom, qty) {
-  console.log('converting packs')
   var product = 1
   var newQtyArray = new Array ()
   for (let index in uom) {
@@ -71,9 +69,7 @@ function convertPacks (uom, qty) {
     product = Math.ceil(product)
     newQtyArray.push(product)
   }
-  
-  console.log(newQtyArray)
-  return newQtyArray
+    return newQtyArray
 }
 
 function parseQty(qtyText) {
@@ -93,7 +89,6 @@ function parseUom(uomText) {
 
     for (let line in uomLines) {
       uomLines[line] = uomLines[line].trim()
-      console.log(uomLines[line]);
       
       if(uomLines[line] == "Each" || uomLines[line] == "Pairs"){
         uomMatch.push(1);
@@ -111,9 +106,18 @@ function parseUom(uomText) {
       
 
   }
+  function showPlace() {
+    const placeField = document.getElementById('placeField')
+	if (placeCheck.checked == true) {
+	placeField.style.display = 'inline-block';
+	}
+else {
+placeField.style.display = 'none';
+}
+	
+	}
 //show custom field
 function showCust() {
-console.log('executed' + custCheck)
 	if (custCheck.checked == true) {
 	custField.style.display = 'inline-block';
 	}
@@ -147,8 +151,6 @@ else {
 function showQty() {
     const qtyCheck = document.getElementById('qtyCheck').checked;
     const uomCheck = document.getElementById('uomCheck').checked;
-console.log(' qty ' + qtyCheck)
-console.log('uom  ' + uomCheck)
 	if (qtyCheck == true) {
 	qtyDiv.style.display = 'inline-block';
     }
@@ -165,23 +167,43 @@ console.log('uom  ' + uomCheck)
 	}
 //parse the email into arrays
 function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArray, tableCheck) {
-    console.log(qtyArray)
     const pattern = /([1-9])(\d{3,4})([AKTNaktn])(\d{1,3})/gim;
     const patternReg = /([1-9])(\d{3,4})([AKTNaktn])(\d{1,3})/gim;
     const digit = /(\d)/;
+    const digitAll = /(\d)/gim;
+
     const partMatch = emailText.match(pattern);
     const setMatch = new Set(partMatch);
     const setArray = [...setMatch]; //no dupe array
 
-console.log(emailText)
+    const placeVal = document.getElementById('placeField').value;
+    var placeMatch = placeVal.match(digitAll)
+    const placeS = new Set(placeMatch)
+    const placeSet = [...placeS]
+
+    partsWithPlaceholders = [...partMatch]
+    if (placeSet.length > 0) {
+        for (let line in placeSet) {
+            lineInt = parseInt(placeSet[line]) - 1
+            if (lineInt >= 0) {
+                if (lineInt <= partsWithPlaceholders.length) {
+            partsWithPlaceholders.splice(lineInt,0,"99999A999");
+
+                }
+            }
+        }
+    }
+    const setArrayP = new Set(partsWithPlaceholders)
+    const setArrayPlace = [...setArrayP]
+    console.log(partsWithPlaceholders)
 
     //call functions based on duplicate box
     if (dupCheck == false) {
-        createCSV(setArray, qtyArray,tableCheck);
-        createLineList(setArray, ipixCheck, custCheck, custField,tableCheck);
+        createCSV(setArrayPlace, qtyArray,tableCheck);
+        createLineList(setArrayPlace, ipixCheck, custCheck, custField,tableCheck);
     } else {
-        createCSV(partMatch, qtyArray,tableCheck);
-        createLineList(partMatch, ipixCheck, custCheck, custField,tableCheck);
+        createCSV(partsWithPlaceholders, qtyArray,tableCheck);
+        createLineList(partsWithPlaceholders, ipixCheck, custCheck, custField,tableCheck);
     }
     duplicateCheck(setArray, partMatch);
 
@@ -204,10 +226,10 @@ function createCSV(partMatch, qtyArray,tableCheck) {
     var tableCSV = ' '
     let lineNum = 1;
     let indexNum = 0;
+
+
   if (tableCheck == true) {
-    console.log('table checked')
          if(qtyArray == null) {
-        	  console.log("qty checked, but empty")
 	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
     for (let i in partMatch) {
         //if on item number 5, add line break
@@ -233,8 +255,6 @@ function createCSV(partMatch, qtyArray,tableCheck) {
       }
     
   else if (partMatch.length == qtyArray.length){
-	  	  console.log("qty checked, and numbers")
-
 	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
     for (let i in partMatch) {
         //if on item number 5, add line break
@@ -285,7 +305,6 @@ function createCSV(partMatch, qtyArray,tableCheck) {
 else {
     if (qtyCheck.checked == true || uomCheck.checked == true) {
       if(qtyArray == null) {
-        	  console.log("qty checked, but empty")
 	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
     for (let i in partMatch) {
         tableCSV = tableCSV + partMatch[i] + ' 1,'
@@ -314,8 +333,6 @@ else {
       }
     
   else if (partMatch.length == qtyArray.length){
-	  	  console.log("qty checked, and numbers")
-
 	  //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
     for (let i in partMatch) {
         tableCSV = tableCSV + partMatch[i] +  ' ' + qtyArray[indexNum] +','
@@ -405,7 +422,6 @@ else {
 }
 
 function createLineList(part, ipixCheck, custCheck, custField) {
-	console.log(custField.value)
     const lineListField = document.getElementById('lineListField');
     lineListField.innerHTML = ' '
     let i = 1
