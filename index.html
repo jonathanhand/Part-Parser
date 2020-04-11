@@ -44,6 +44,9 @@
 <div class="center-all">
 </br>
 <div>
+    <input type='text' id='placeField' placeholder='Placeholder Lines'></input>
+</br>
+</br>
     <input type='checkbox' id='tableCheck' value='tableCheck' style="display:none;" ></input>
             <input type='checkbox' id='ipixCheck' value='Duplicate' style='display:none'></input>
             <input type='checkbox' id='dupCheck' value='Duplicate' checked>Show Duplicates</input>
@@ -53,7 +56,6 @@
             <input type='checkbox' id='uomCheck' value='uom'>Pack Converter</input>
         </br>
             <input type='checkbox' id='placeCheck' value='place' style='display:none'></input>
-            <input type='text' id='placeField' placeholder='Placeholder Lines'></input>
 
         </br>
             <Button type='button' class="buttons" id='getPartsBtn' value='Get Parts'>Get Parts</Button>
@@ -65,7 +67,7 @@
         <form id='uomForm'>
                 <label for="uomField">UOM:</label>
             <textarea rows="10" cols="20" placeholder="Paste Unit of Measure Column from McM Table View." id="uomField"></textarea>
-            <br>
+        </br>
         </form>
         <br>
   </div>
@@ -81,7 +83,6 @@
     <div>
     </br>
         <p1 id="alert-text" class="alert-text">Check customer lines with the lines below to ensure line integrity!</p1>
-</br>
 </br>
         <form id="lineListForm">
         <label for="lineListField">Part Numbers by Line</label>
