@@ -112,7 +112,7 @@ function parseQty(qtyText) {
 
 function parseUom(uomText) {
     uomText = uomText.trim()
-    const digitReg = /(\d{1,4})/gim;
+    const digitReg = /(\d{1,6})/gim;
   uomLines = uomText.split('\n')
   var uomMatch = new Array()
 
