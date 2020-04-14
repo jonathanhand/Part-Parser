@@ -225,7 +225,7 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
     const setArrayP = new Set(partsWithPlaceholders)
     const setArrayPlace = [...setArrayP]
     console.log(partsWithPlaceholders)
-
+    console.log(qtyArray)
     //call functions based on duplicate box
     if (dupCheck == false) {
         createCSV(setArrayPlace, qtyArray,tableCheck);
