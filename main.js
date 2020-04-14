@@ -36,6 +36,10 @@ const custField = document.getElementById('custField');
 const alert = document.getElementById('alert-text');
 //get html elements
 const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('click', function () {
+    console.log("Testing thanks to:")
+    console.log("Austen Young")
+    console.log("Jack Gamboa")
+    console.log("Patrick Potvin")
     alert.style.display = "inline-block";
     const emailField = document.getElementById('emailField');
     const dupCheck = document.getElementById('dupCheck').checked;
@@ -205,7 +209,7 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
     var placeMatch = placeVal.match(digitAll)
     const placeS = new Set(placeMatch)
     const placeSet = [...placeS]
-
+    
     partsWithPlaceholders = [...partMatch]
     if (placeSet.length > 0) {
         for (let line in placeSet) {
