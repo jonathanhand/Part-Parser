@@ -102,7 +102,7 @@ function convertPacks (uom, qty) {
 }
 
 function parseQty(qtyText) {
-    const digitReg = /(\d{1,6})/gim;
+    const digitReg = /(\d{1,7})/gim;
     const qtyMatch = qtyText.match(digitReg);
   if (qtyMatch != null) {
       return qtyMatch;
@@ -112,7 +112,7 @@ function parseQty(qtyText) {
 
 function parseUom(uomText) {
     uomText = uomText.trim()
-    const digitReg = /(\d{1,6})/gim;
+    const digitReg = /(\d{1,7})/gim;
   uomLines = uomText.split('\n')
   var uomMatch = new Array()
 
@@ -198,8 +198,8 @@ function showQty() {
 function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArray, tableCheck) {
     const pattern = /([1-9])(\d{3,4})([AKTNaktn])(\d{1,3})/gim;
     const patternReg = /([1-9])(\d{3,4})([AKTNaktn])(\d{1,3})/gim;
-    const digit = /(\d{1,6})/;
-    const digitAll = /(\d{1,6})/gim;
+    const digit = /(\d{1,7})/;
+    const digitAll = /(\d{1,7})/gim;
 
     const partMatch = emailText.match(pattern);
     const setMatch = new Set(partMatch);
