@@ -102,7 +102,7 @@ function convertPacks (uom, qty) {
 }
 
 function parseQty(qtyText) {
-    const digitReg = /(\d{1,4})/gim;
+    const digitReg = /(\d{1,6})/gim;
     const qtyMatch = qtyText.match(digitReg);
   if (qtyMatch != null) {
       return qtyMatch;
