@@ -2,6 +2,8 @@ console.log("Testing thanks to:")
 console.log("Austen Young")
 console.log("Jack Gamboa")
 console.log("Patrick Potvin")
+const dupBox = document.getElementById('dupCheck').checked = false;
+const packCon = document.getElementById('uomCheck').checked = false;
 
 function clearAll() {
     var elements = document.getElementsByTagName("input");
