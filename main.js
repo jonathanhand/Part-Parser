@@ -496,50 +496,33 @@ function parseRev(revVal, availCheck, table) {
     let lineArray = []
     let orderedArray = []
     console.log('split!')
+    for (let line = 0; line < lineSplit.length - 2; line++) {
+        let split = lineSplit[line].split(tabPattern)
+        lineArray[line] = split.slice();
+        console.log(split)
+
+        lineArray[line][0] = split.slice(0, 1)
+        console.log(lineArray[line][0])
+        lineArray[line][1] = split.slice(3, 4)
+        lineArray[line][2] = split.slice(4, 5)
+        console.log(split[1])
+        if (split[6][0] != '$') {
+            split[6] = '$' + split[6]
+        }
+        lineArray[line][3] = split.slice(6, 7)
+        lineArray[line][4] = split.slice(2, 3)
+        lineArray[line][8] = split.slice(1, 2)
+        lineArray[line][6] = split.slice(6, 7)
+        lineArray[line][7] = split.slice(7, 8)
+        lineArray[line][5] = split.slice(5, 6)
+
+    }
     if (availCheck == false) {
-        for (let line = 0; line < lineSplit.length - 2; line++) {
-            let split = lineSplit[line].split(tabPattern)
-            lineArray[line] = split.slice();
-            console.log(split)
-
-            lineArray[line][0] = split.slice(0, 1)
-            console.log(lineArray[line][0])
-            lineArray[line][1] = split.slice(3, 4)
-            lineArray[line][2] = split.slice(4, 5)
-            console.log(split[1])
-            if (split[6][0] != '$') {
-                split[6] = '$' + split[6]
-            }
-            lineArray[line][3] = split.slice(6, 7)
-            lineArray[line][4] = split.slice(2, 3)
-            lineArray[line][5] = split.slice(1, 2)
-            lineArray[line][6] = split.slice(6, 7)
-            lineArray[line][7] = split.slice(7, 8)
-            lineArray[line][8] = split.slice(8, 9)
-
-        }
+        //hide avail
+        let x = 0
     } else {
-        for (let line = 0; line < lineSplit.length - 2; line++) {
-            let split = lineSplit[line].split(tabPattern)
-            lineArray[line] = split.slice();
-            console.log(split)
-
-            lineArray[line][0] = split.slice(0, 1)
-            console.log(lineArray[line][0])
-            lineArray[line][1] = split.slice(3, 4)
-            lineArray[line][2] = split.slice(4, 5)
-            console.log(split[1])
-            if (split[6][0] != '$') {
-                split[6] = '$' + split[6]
-            }
-            lineArray[line][3] = split.slice(6, 7)
-            lineArray[line][4] = split.slice(2, 3)
-            lineArray[line][5] = split.slice(1, 2)
-            lineArray[line][6] = split.slice(6, 7)
-            lineArray[line][7] = split.slice(7, 8)
-            lineArray[line][8] = split.slice(8, 9)
-
-        }
+        let x = 1
+     //display avail
     }
     // for (let cell in lineArray) {
     //   lineArray[]
@@ -570,3 +553,5 @@ function createTable(lineArray,table) {
     }
     console.log(table)
 }
+
+

@@ -57,7 +57,3 @@ th {
 td:nth-child(8),td:nth-child(1),th:nth-child(1),td:nth-child(9),th:nth-child(8), td:nth-child(7),th:nth-child(7) {
   display: none;
 } 
-
-td:nth-child(6),th:nth-child(6) {
-  display:none;
-}
