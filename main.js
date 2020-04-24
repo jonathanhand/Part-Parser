@@ -220,7 +220,7 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
     console.log(partsWithPlaceholders)
     console.log(qtyArray)
     //call functions based on duplicate box
-    if (dupCheck == false) {
+    if (dupCheck == true) {
         createCSV(setArrayPlace, qtyArray, tableCheck);
         createLineList(setArrayPlace, ipixCheck, custCheck, custField, tableCheck);
     } else {
@@ -374,7 +374,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                     indexNum += 1;
                 }
             } else {
-                window.alert("Number of quantities does not match the number of parts.\n \nPlease verify each part number is a McMaster part number and each part number has a quantity. \n \n");
+                window.alert("Number of quantities does not match the number of parts.\n \nPlease verify each part number is a McMaster part number and each part number has a quantity. \n \nInvalid quanties will not be used (ex: 0.05)\n \n");
                 for (let i in partMatch) {
                     tableCSV = tableCSV + partMatch[i] + ' 1,';
                     //if on item number 7, add line break

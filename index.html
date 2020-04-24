@@ -49,16 +49,24 @@
     <div class="center-all">
         </br>
         <div>
-            <input type='text' id='placeField' placeholder='List lines that do not have a McMaster-Carr part number' size="75"></input>
+            <input type='text' id='placeField' placeholder='List lines that do not have a McMaster-Carr part number'
+                size="75"></input>
             </br>
             </br>
             <input type='checkbox' id='tableCheck' value='tableCheck' style="display:none;"></input>
             <input type='checkbox' id='ipixCheck' value='Duplicate' style='display:none'></input>
-            <input type='checkbox' id='dupCheck' value='Duplicate' style="display:none;" checked></input>
+            <div class="container">
+                <div style="border: 1px solid black;">
+                    <input type='checkbox' id='dupCheck' value='Duplicate'>Remove Duplicates</input>
+                </div>
+                <div style="border: 1px solid black;">
+                    <input type='checkbox' id='uomCheck' value='uom'>Pack Converter</input>
+
+                </div>
+            </div>
             <input type='checkbox' id='custCheck' style="display:none;" value='Custom'></input>
             <input type='text' id='custField' placeholder='Custom Output' style='display:none'></input>
             <input type='checkbox' id='qtyCheck' value='Qty' style="display:none;" checked></input>
-            <input type='checkbox' id='uomCheck' value='uom'>Pack Converter</input>
             </br>
             <input type='checkbox' id='placeCheck' value='place' style='display:none'></input>
 
@@ -67,6 +75,8 @@
             <button onclick=clearAll()>Clear</button>
 
         </div>
+        </br>
+        </br>
 
         <div id='uomDiv' style='display:none'>
             <form id='uomForm'>
@@ -121,37 +131,39 @@
             </form>
         </div>
         </br>
-    </br>
-        <a name="makeTableLink" href="https://www.mcmaster.com/orders" target="_blank"><button>McM Order Page</button></a>
-    </br>
         </br>
- 
-    </br>
-    <div>
-        <form id='revForm'>
-            <label for="revField">Make Tables:</label>
-            <textarea rows="20" cols="100" placeholder="Paste all from McMaster Table View" id="revField"></textarea>
-            </br>
+        <a name="makeTableLink" href="https://www.mcmaster.com/orders" target="_blank"><button>McM Order
+                Page</button></a>
+        </br>
+        </br>
 
-            <!--
+        </br>
+        <div>
+            <form id='revForm'>
+                <label for="revField">Make Tables:</label>
+                <textarea rows="20" cols="100" placeholder="Paste all from McMaster Table View"
+                    id="revField"></textarea>
+                </br>
+
+                <!--
          <input type='checkbox' id='lineCheck' value='lineCheck'>Line Number
          <input type='checkbox' id='descriptionCheck' value='descriptionCheck' checked>Description
          <input type='checkbox' id='qtyCheck' value='qtyCheck'>Quantity
          -->
-            <input type='checkbox' id='availCheck' value='availCheck' style="display:none;">
+                <input type='checkbox' id='availCheck' value='availCheck' style="display:none;">
 
-            </br>
-            </br>
-            <button type='button' class="buttons" id='makeTableBtn' value='Create Table'>Create Table</button>
-            <button onclick="document.getElementById('revField').value = ''">Clear</button>
+                </br>
+                </br>
+                <button type='button' class="buttons" id='makeTableBtn' value='Create Table'>Create Table</button>
+                <button onclick="document.getElementById('revField').value = ''">Clear</button>
 
-        </form>
+            </form>
+        </div>
+        </br>
+        </br>
+
+        <label for="wholeTable">Table Output:</label>
     </div>
-</br>
-</br>
-
-    <label for="wholeTable">Table Output:</label>
-</div>
     <br>
     <br>
     <table id='wholeTable'>
