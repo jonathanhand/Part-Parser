@@ -2,119 +2,175 @@
 <html lang="en">
 
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157949424-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157949424-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-157949424-1');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-157949424-1');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Parts Parser</title>
-    <link rel = "stylesheet" type= "text/css" href = "style.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="main.js" defer></script>
 </head>
 
 <body>
-        <a href="tables.html"><button style="float: right;">Make Tables</button></a>
+    <a href="#makeTableLink"><button style="float: right;">Make Tables</button></a>
 
     </br>
     <p style="text-align:center">@Jon Hand for feedback and questions</p>
     <div class="center-all">
         <h1>Part Parser</h1>
     </div>
-        <div class="container">
-    <div>
-        <form id='inboundForm'>
-            <label for="emailField" style="padding-left: 10px;">Text:</label>
-            <textarea rows="15" cols="40" placeholder="Paste all of the email text or spreadsheet text here." id="emailField"></textarea>
-        </form>
- </div>
-<div id='qtyDiv'>
-        <form id='qtyForm'>
-                <label for="qtyField"style="padding-left: 10px;">Qty:</label>
-            <textarea rows="15" cols="40" placeholder="Paste quantities here (will default to 1's if left empty)." id="qtyField"></textarea>
-        </form>
-</div>
-</div>
-<div class="center-all">
-</br>
-<div>
-    <input type='text' id='placeField' placeholder='Placeholder Lines'></input>
-</br>
-</br>
-    <input type='checkbox' id='tableCheck' value='tableCheck' style="display:none;" ></input>
+    <div class="container">
+        <div>
+            <form id='inboundForm'>
+                <label for="emailField" style="padding-left: 10px;">Text:</label>
+                <textarea rows="15" cols="40" placeholder="Paste all of the email text or spreadsheet text here."
+                    id="emailField"></textarea>
+            </form>
+        </div>
+        <div id='qtyDiv'>
+            <form id='qtyForm'>
+                <label for="qtyField" style="padding-left: 10px;">Qty:</label>
+                <textarea rows="15" cols="40" placeholder="Paste quantities here (will default to 1's if left empty)."
+                    id="qtyField"></textarea>
+            </form>
+        </div>
+    </div>
+    <div class="center-all">
+        </br>
+        <div>
+            <input type='text' id='placeField' placeholder='Placeholder Lines'></input>
+            </br>
+            </br>
+            <input type='checkbox' id='tableCheck' value='tableCheck' style="display:none;"></input>
             <input type='checkbox' id='ipixCheck' value='Duplicate' style='display:none'></input>
             <input type='checkbox' id='dupCheck' value='Duplicate' checked>Show Duplicates</input>
-        <input type='checkbox' id='custCheck' style="display:none;" value='Custom'></input>
-	          <input type='text' id='custField' placeholder='Custom Output' style='display:none'></input>
+            <input type='checkbox' id='custCheck' style="display:none;" value='Custom'></input>
+            <input type='text' id='custField' placeholder='Custom Output' style='display:none'></input>
             <input type='checkbox' id='qtyCheck' value='Qty' checked>Quantity</input>
             <input type='checkbox' id='uomCheck' value='uom'>Pack Converter</input>
-        </br>
+            </br>
             <input type='checkbox' id='placeCheck' value='place' style='display:none'></input>
 
-        </br>
+            </br>
             <button type='button' class="buttons" id='getPartsBtn' value='Get Parts'>Get Parts</Button>
             <button onclick=clearAll()>Clear</button>
-		
-</div>
 
-<div id='uomDiv' style='display:none'>
-        <form id='uomForm'>
+        </div>
+
+        <div id='uomDiv' style='display:none'>
+            <form id='uomForm'>
                 <label for="uomField">UOM:</label>
-            <textarea rows="10" cols="20" placeholder="Paste Unit of Measure Column from McM Table View." id="uomField"></textarea>
-        </br>
-        </form>
-        <br>
-  </div>
-<div id='uomConDiv' style='display:none'>
-        <form id='uomConForm'>
-                <label for="uomConField">Converted Qty:</label>
-            <textarea rows="10" cols="20" placeholder="Converted quantities will be here." id="uomConField"></textarea>
+                <textarea rows="10" cols="20" placeholder="Paste Unit of Measure Column from McM Table View."
+                    id="uomField"></textarea>
+                </br>
+            </form>
             <br>
-        </form>
-        <br>
-  </div>
+        </div>
+        <div id='uomConDiv' style='display:none'>
+            <form id='uomConForm'>
+                <label for="uomConField">Converted Qty:</label>
+                <textarea rows="10" cols="20" placeholder="Converted quantities will be here."
+                    id="uomConField"></textarea>
+                <br>
+            </form>
+            <br>
+        </div>
 
-    <div>
-    </br>
-        <p1 id="alert-text" class="alert-text">Check customer lines with the lines below to ensure line integrity!</p1>
-</br>
-        <form id="lineListForm">
-        <label for="lineListField">Part Numbers by Line</label>
-        <textarea rows="20" cols="100" placeholder="Use this to check that each line matches the customer email/spreadsheet." id="lineListField"></textarea>
-    </form>
-    </div>
-</br>
-</br>
-    <div>
-        <form id="outboundForm">
+        <div>
+            </br>
+            <p1 id="alert-text" class="alert-text">Check customer lines with the lines below to ensure line integrity!
+            </p1>
+            </br>
+            <form id="lineListForm">
+                <label for="lineListField">Part Numbers by Line</label>
+                <textarea rows="20" cols="100"
+                    placeholder="Use this to check that each line matches the customer email/spreadsheet."
+                    id="lineListField"></textarea>
+            </form>
+        </div>
+        </br>
+        </br>
+        <div>
+            <form id="outboundForm">
                 <label for="partCSVField">Part Numbers in Memo Format:</label>
-            <textarea rows="20" cols="100" placeholder="Part numbers will be here in memo format. Copy one line at a time and paste into memo." id="partCSVField"></textarea>
-        </form>
+                <textarea rows="20" cols="100"
+                    placeholder="Part numbers will be here in memo format. Copy one line at a time and paste into memo."
+                    id="partCSVField"></textarea>
+            </form>
+            </br>
+            </br>
+        </div>
+        </br>
+        <div>
+            <form id="tableCSVForm">
+                <label for="tableCSVField">Part Numbers in Table View Format:</label>
+                <textarea rows="20" cols="100"
+                    placeholder="Part numbers will be listed here formatted to paste into McM.com Order Page."
+                    id="tableCSVField"></textarea>
+            </form>
+        </div>
+        </br>
     </br>
-</br>
-  </div>
-</br>
-</br>
-
+        <a name="makeTableLink" href="https://www.mcmaster.com/orders" target="_blank"><button>McM Order Page</button></a>
+    </br>
+        </br>
+ 
+    </br>
     <div>
+        <form id='revForm'>
+            <label for="revField">Make Tables:</label>
+            <textarea rows="20" cols="100" placeholder="Paste all from McMaster Table View" id="revField"></textarea>
+            </br>
 
-    <form id="tableCSVForm">
-        
-            <label for="tableCSVField">Part Numbers in Table View Format:</label>
-        <textarea rows="20" cols="100" placeholder="Part numbers will be listed here formatted to paste into McM.com Order Page." id="tableCSVField"></textarea>
-    </form>
+            <!--
+         <input type='checkbox' id='lineCheck' value='lineCheck'>Line Number
+         <input type='checkbox' id='descriptionCheck' value='descriptionCheck' checked>Description
+         <input type='checkbox' id='qtyCheck' value='qtyCheck'>Quantity
+         -->
+            <input type='checkbox' id='availCheck' value='availCheck'>Availability Column
+
+            </br>
+            </br>
+            <button type='button' class="buttons" id='makeTableBtn' value='Create Table'>Create Table</button>
+            <button onclick="document.getElementById('revField').value = ''">Clear</button>
+
+        </form>
     </div>
 </br>
-    <a href="https://www.mcmaster.com/orders" target="_blank" ><button>McM Order Page</button></a>
-
 </br>
+
+    <label for="wholeTable">Table Output:</label>
 </div>
+    <br>
+    <br>
+    <br>
+    <table id='wholeTable'>
+        <thead>
+            <tr>
+                <th id='lineHeader'>Line</th>
+                <th>Part Number</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Unit of Measure</th>
+                <th id="availID">Availability</th>
+            </tr>
+        </thead>
+        <tbody id='tableOutput'>
+        </tbody>
+    </table>
+    <br>
+    <br>
 </body>
 
 </html>
