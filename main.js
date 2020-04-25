@@ -325,6 +325,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
     } else {
         if (qtyCheck.checked == true || uomCheck.checked == true) {
             if (qtyArray == null) {
+                console.log("qty array is null")
                 //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
                 for (let i in partMatch) {
                     tableCSV = tableCSV + partMatch[i] + ' 1,'
@@ -351,6 +352,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                 }
 
             } else if (partMatch.length == qtyArray.length) {
+                console.log("qty and pns match")
                 //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
                 for (let i in partMatch) {
                     tableCSV = tableCSV + partMatch[i] + ' ' + qtyArray[indexNum] + ','
@@ -376,6 +378,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                     indexNum += 1;
                 }
             } else {
+                console.log("send alert")
                 window.alert("Number of quantities does not match the number of parts.\n \nPlease verify each part number is a McMaster part number and each part number has a quantity. \n \nInvalid quanties will not be used (ex: 0.05)\n \n");
                 for (let i in partMatch) {
                     tableCSV = tableCSV + partMatch[i] + ' 1,';
