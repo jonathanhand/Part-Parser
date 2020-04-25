@@ -23,7 +23,9 @@
 </head>
 
 <body>
-    <a href="#makeTableLink"><button id="topTableBtn" class="smallbutton" style="float: right;">Make Tables</button></a>
+    <!--<a href="#makeTableLink"><button id="topTableBtn" class="smallbutton" style="float: right;">Make Tables</button></a>
+</br>
+-->
 </br>
     <div class="tooltip">Help & Feedback
         <span class="tooltiptext"> Slack @Jon Hand with any feedback or questions.
@@ -96,22 +98,21 @@
                     id="uomConField"></textarea>
                 <br>
             </form>
-            <br>
         </div>
 
         <div>
-            </br>
             <p1 id="alert-text" class="alert-text">Check customer lines with the lines below to ensure line integrity!
             </p1>
             </br>
             <form id="lineListForm">
                 <label for="lineListField">Part Numbers by Line</label>
+                <div class="textarea-wrapper">
                 <textarea rows="20" cols="100"
                     placeholder="Use this to check that each line matches the customer email/spreadsheet."
                     id="lineListField"></textarea>
+                </div>
             </form>
         </div>
-        </br>
         </br>
         <div>
             <form id="outboundForm">
@@ -129,7 +130,11 @@
                 <label for="tableCSVField">Part Numbers in Table View Format:</label>
                 <textarea rows="20" cols="100"
                     placeholder="Part numbers will be listed here formatted to paste into McM.com Order Page."
-                    id="tableCSVField"></textarea>
+                    id="tableCSVField" 
+
+                    onclick="this.focus();this.select()" readonly="readonly"
+                    
+                    ></textarea>
             </form>
         </div>
         </br>
@@ -176,7 +181,7 @@
     </div>
     <br>
     <br>
-    <table id='wholeTable'>
+    <table id='wholeTable' > 
         <thead>
             <tr>
                 <th id='lineHeader'>Line</th>
@@ -192,8 +197,10 @@
     </table>
     <br>
     <br>
-    <a href="#topTableBtn"><button class="smallbutton" style="float: right;">Top</button></a>
+    <div class="container">
+    <a href="#topTableBtn"><button class="smallbutton" style="font-size:16px" >Top</button></a>
 
+</div>
 </body>
 
 </html>
