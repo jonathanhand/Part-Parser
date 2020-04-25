@@ -9,11 +9,11 @@ h1 {
     filter:contrast(8.45);
 }
 button {
-    color:black;
-    background-color:rgb(251, 255, 30);
+    color:  #777777;
+    background-color:white;
     font-size:24px;
-    font-weight:bold;
-    border-radius:12px;
+    text-transform: uppercase;
+    border: 1px #bbbbbb solid
 }
 label {
     font-size:26px;
@@ -65,9 +65,46 @@ td:nth-child(8),td:nth-child(1),th:nth-child(1),td:nth-child(9),th:nth-child(8),
 }
 
 .smallbutton {
-    color:black;
-    background-color:rgb(251, 255, 30);
+    color:  #777777;
+    background-color:white;
     font-size:16px;
-    font-weight:bold;
-    border-radius:12px;
+    text-transform: uppercase;
+    border: 1px #bbbbbb solid
 }
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
