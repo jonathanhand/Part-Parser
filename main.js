@@ -162,7 +162,7 @@ function showUom() {
     } else {
         if (qtyCheck.checked == false) {
             uomDiv.style.display = 'none';
-            qtyDiv.style.display = 'none';
+            //qtyDiv.style.display = 'none';
             uomConDiv.style.display = 'none';
         }
         if (qtyCheck.checked == true) {
