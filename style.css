@@ -63,7 +63,6 @@ td:nth-child(8),td:nth-child(1),th:nth-child(1),td:nth-child(9),th:nth-child(8),
     padding-inline-end: 10px;
     padding-inline-start: 10px;
     border: 1px solid black;
-    font-weight: bold;
 }
 
 .smallbutton {
