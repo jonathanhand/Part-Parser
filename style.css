@@ -62,7 +62,7 @@ td:nth-child(8),td:nth-child(1),th:nth-child(1),td:nth-child(9),th:nth-child(8),
 .checkboxes {
     padding-inline-end: 10px;
     padding-inline-start: 10px;
-    border: 1px solid #777777;
+    border: 1px solid #c4c4c4;
     border-right: none;
 }
 
