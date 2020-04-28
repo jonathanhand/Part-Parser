@@ -441,7 +441,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
 
 function createLineList(part, ipixCheck, custCheck, custField) {
     const lineListField = document.getElementById('lineListField');
-    lineListField.innerHTML = ' '
+    lineListField.innerHTML = ''
     let i = 1
     for (let j in part) {
         if (ipixCheck == true) {
