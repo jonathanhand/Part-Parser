@@ -62,7 +62,8 @@ td:nth-child(8),td:nth-child(1),th:nth-child(1),td:nth-child(9),th:nth-child(8),
 .checkboxes {
     padding-inline-end: 10px;
     padding-inline-start: 10px;
-    border: 1px solid black;
+    border: 1px solid #777777;
+    border-right: none;
 }
 
 .smallbutton {
@@ -113,9 +114,11 @@ td:nth-child(8),td:nth-child(1),th:nth-child(1),td:nth-child(9),th:nth-child(8),
 
   textarea {
 
-    background: url('textNums.png') top -12px left / auto no-repeat, 
-                linear-gradient(rgb(255, 255, 255) 50%, rgb(243, 243, 243) 50%) top left / 100% 32px;
-    border: 1px solid #CCC;
+    background: linear-gradient(rgb(255, 255, 255) 50%, rgb(243, 243, 243) 50%) top left / 100% 32px;
+    background-repeat: repeat-y;
+
+    background-attachment: local;
+                border: 1px solid #CCC;
     box-sizing: border-box;
     padding: 0 0 0 30px;
     resize: vertical;
