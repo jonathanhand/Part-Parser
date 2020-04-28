@@ -259,7 +259,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                 //if on item number 5, add line break
                 if (lineNum % 5 == 0) {
                     // console.log('adding line break after ' + partMatch[i])
-                    partsCSV = partsCSV + partMatch[i] + ' ' + '1' + ',' + '\n' + '\n';
+                    partsCSV = partsCSV + partMatch[i] + ' ' + '1' + ',' + '\n' ;
 
                 }
                 //takes off comma if last part number (less than 5)
@@ -282,7 +282,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                 //if on item number 5, add line break
                 if (lineNum % 5 == 0) {
                     // console.log('adding line break after ' + partMatch[i])
-                    partsCSV = partsCSV + partMatch[i] + ' ' + qtyArray[indexNum] + ',' + '\n' + '\n';
+                    partsCSV = partsCSV + partMatch[i] + ' ' + qtyArray[indexNum] + ',' + '\n';
 
                 }
                 //takes off comma if last part number (less than 5)
@@ -303,7 +303,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                 //if on item number 7, add line break
                 if (lineNum % 7 == 0) {
                     // console.log('adding line break after ' + partMatch[i])
-                    partsCSV = partsCSV + partMatch[i] + ',' + '\n' + '\n';
+                    partsCSV = partsCSV + partMatch[i] + ',' + '\n';
 
                 }
                 //takes off comma if last part number (less than 7)
@@ -332,7 +332,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                     //if on item number 5, add line break
                     if (lineNum % 5 == 0) {
                         // console.log('adding line break after ' + partMatch[i])
-                        partsCSV = partsCSV + partMatch[i] + ' ' + '1' + '\n' + '\n';
+                        partsCSV = partsCSV + partMatch[i] + ' ' + '1' + '\n' ;
 
                     }
                     //takes off comma if last part number (less than 5)
@@ -359,7 +359,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                     //if on item number 5, add line break
                     if (lineNum % 5 == 0) {
                         // console.log('adding line break after ' + partMatch[i])
-                        partsCSV = partsCSV + partMatch[i] + ' ' + qtyArray[indexNum] + '\n' + '\n';
+                        partsCSV = partsCSV + partMatch[i] + ' ' + qtyArray[indexNum] + '\n' ;
 
                     }
                     //takes off comma if last part number (less than 5)
@@ -385,7 +385,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                     //if on item number 7, add line break
                     if (lineNum % 7 == 0) {
                         // console.log('adding line break after ' + partMatch[i])
-                        partsCSV = partsCSV + partMatch[i] + '\n' + '\n';
+                        partsCSV = partsCSV + partMatch[i] + '\n';
 
 
                     }
@@ -413,7 +413,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                 //if on item number 7, add line break
                 if (lineNum % 7 == 0) {
                     // console.log('adding line break after ' + partMatch[i])
-                    partsCSV = partsCSV + partMatch[i] + '\n' + '\n';
+                    partsCSV = partsCSV + partMatch[i] + '\n';
 
                 }
                 //takes off comma if last part number (less than 7)
