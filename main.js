@@ -246,8 +246,8 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
 }
 //create csv from passed in array
 function createCSV(partMatch, qtyArray, tableCheck) {
-    var partsCSV = ' '
-    var tableCSV = ' '
+    var partsCSV = ''
+    var tableCSV = ''
     let lineNum = 1;
     let indexNum = 0;
 
