@@ -175,7 +175,7 @@ function showQty() {
         if (uomCheck == true) {
             qtyDiv.style.display = 'inline-block';
         } else {
-            qtyDiv.style.display = 'none';
+            qtyDiv.style.display = 'inline-block';
 
         }
 
