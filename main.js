@@ -558,5 +558,7 @@ function createTable(lineArray,table) {
 function clearTable() {
     var table = document.getElementById('tableOutput')
     table.innerHTML="";
+    var revField = document.getElementById('revField');
+    revField.value = "";
 
 }
