@@ -79,7 +79,7 @@ function qtyOut(newQty) {
     for (let i in newQty) {
         qtyOut += newQty[i] + '\n'
     }
-    uomConField.innerHTML = qtyOut
+    uomConField.value = qtyOut
 }
 
 function convertPacks(uom, qty) {
@@ -483,7 +483,7 @@ const makeTableBtn = document.getElementById('makeTableBtn').addEventListener('c
     //const qtyCheck = document.getElementById('qtyCheck');
     const availCheck = document.getElementById('availCheck').checked;
     var table = document.getElementById('tableOutput')
-    table.innerHTML = "";
+    table.value = "";
 
     parseRev(revField.value, availCheck, table);
 });
