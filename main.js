@@ -483,7 +483,7 @@ const makeTableBtn = document.getElementById('makeTableBtn').addEventListener('c
     //const qtyCheck = document.getElementById('qtyCheck');
     const availCheck = document.getElementById('availCheck').checked;
     var table = document.getElementById('tableOutput')
-    table.value = "";
+    table.innerHTML = "";
 
     parseRev(revField.value, availCheck, table);
 });
@@ -555,4 +555,8 @@ function createTable(lineArray,table) {
     console.log(table)
 }
 
+function clearTable() {
+    var table = document.getElementById('tableOutput')
+    table.innerHTML="";
 
+}
