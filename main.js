@@ -6,11 +6,7 @@ const dupBox = document.getElementById('dupCheck').checked = false;
 const packCon = document.getElementById('uomCheck').checked = false;
 
 function clearAll() {
-    var elements = document.getElementsByTagName("input");
-    var elements2 = document.getElementsByTagName('textarea');
-    const emailField = document.getElementById('emailField');
     const qtyField = document.getElementById('qtyField');
-
     const lineListField = document.getElementById('lineListField');
     const partCSVField = document.getElementById('partCSVField');
     const tableCSVField = document.getElementById('tableCSVField');
@@ -22,11 +18,6 @@ function clearAll() {
     partCSVField.value = '';
     tableCSVField.value = '';
 
-    for (var ii = 0; ii < elements.length; ii++) {
-        if (elements[ii].type == "text") {
-            elements[ii].value = "";
-        }
-    }
 
 }
 
@@ -204,7 +195,10 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
     var placeMatch = placeVal.match(digitAll)
     const placeS = new Set(placeMatch)
     const placeSet = [...placeS]
-
+    if (partMatch == null){
+        console.log('no parts!')
+    }
+    else{
     partsWithPlaceholders = [...partMatch]
     if (placeSet.length > 0) {
         for (let line in placeSet) {
@@ -242,10 +236,12 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
             }
         }
     }
-
+    }
 }
 //create csv from passed in array
 function createCSV(partMatch, qtyArray, tableCheck) {
+    console.log('create')
+
     var partsCSV = ''
     var tableCSV = ''
     let lineNum = 1;
@@ -432,24 +428,24 @@ function createCSV(partMatch, qtyArray, tableCheck) {
         }
     }
     const partCSVField = document.getElementById('partCSVField');
-    partCSVField.innerHTML = partsCSV;
+    partCSVField.value = partsCSV;
 
     const tableCSVField = document.getElementById('tableCSVField');
-    tableCSVField.innerHTML = tableCSV;
+    tableCSVField.value = tableCSV;
 
 }
 
 function createLineList(part, ipixCheck, custCheck, custField) {
     const lineListField = document.getElementById('lineListField');
-    lineListField.innerHTML = ''
+    lineListField.value = ''
     let i = 1
     for (let j in part) {
         if (ipixCheck == true) {
-            lineListField.innerHTML += 'Ln ' + i + ":\n" + 'IPIX' + part[j] + '\n'
+            lineListField.value += 'Ln ' + i + ":\n" + 'IPIX' + part[j] + '\n'
         } else if (custCheck.checked == true) {
-            lineListField.innerHTML += 'Ln ' + i + ":\n" + custField.value + part[j] + '\n'
+            lineListField.value += 'Ln ' + i + ":\n" + custField.value + part[j] + '\n'
         } else {
-            lineListField.innerHTML += 'Ln ' + i + " - " + part[j] + '\n'
+            lineListField.value += 'Ln ' + i + " - " + part[j] + '\n'
         }
         i += 1
 
