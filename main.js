@@ -102,12 +102,21 @@ function parseQty(qtyText) {
     //const qtyMatch = qtyText.match(digitReg);
     const qtyMatch = qtyText.match(floatReg);
     var ceilArr = new Array()
+    var roundLines = ''
     console.log(qtyMatch)
     if (qtyMatch != null) {
         for (let number in qtyMatch){
-            ceilArr.push(Math.ceil(qtyMatch[number]))
+            var roundedNum = Math.ceil(qtyMatch[number])
+            let line = parseInt(number) + parseInt(1)
+            ceilArr.push(roundedNum)
+            if(roundedNum != qtyMatch[number]) {
+                roundLines = roundLines + 'Rounded quantity on line ' + line + ' to ' + roundedNum + '.' + '\n\n'
+            }
         }
         console.log(ceilArr)
+        if (roundLines != '') {
+            window.alert('' + roundLines);
+        }
         return ceilArr;
 
     }
@@ -386,7 +395,7 @@ function createCSV(partMatch, qtyArray, tableCheck) {
                 }
             } else {
                 console.log("send alert")
-                window.alert("Number of quantities does not match the number of parts.\n \nPlease verify each part number is a McMaster part number and each part number has a quantity. \n \nInvalid quanties will not be used (ex: 0.05)\n \n");
+                window.alert("Number of quantities does not match the number of parts.\n \nPlease verify each part number is a McMaster part number and each part number has a quantity. \n \n");
                 for (let i in partMatch) {
                     tableCSV = tableCSV + partMatch[i] + ' 1,';
                     //if on item number 7, add line break
