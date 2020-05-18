@@ -1,5 +1,4 @@
 
-console.log("updated")
 console.log("Created by Jon Hand")
 console.log("Testing thanks to:")
 console.log("Austen Young")
@@ -186,7 +185,7 @@ function showQty() {
         if (uomCheck == true) {
             qtyDiv.style.display = 'inline-block';
         } else {
-            qtyDiv.style.display = 'inline-block';
+            qtyDiv.style.display = 'none';
 
         }
 
