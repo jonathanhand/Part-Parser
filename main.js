@@ -81,6 +81,7 @@ function qtyOut(newQty) {
         qtyOut += newQty[i] + '\n'
     }
     uomConField.value = qtyOut
+    console.log(qtyOut);
 }
 
 function convertPacks(uom, qty) {
@@ -95,10 +96,18 @@ function convertPacks(uom, qty) {
 }
 
 function parseQty(qtyText) {
-    const digitReg = /(\d{1,7})/gim;
-    const qtyMatch = qtyText.match(digitReg);
+    //const digitReg = /(\d{1,7})/gim;
+    const floatReg = /(\d+(\.\d+)?)/gim;
+    //const qtyMatch = qtyText.match(digitReg);
+    const qtyMatch = qtyText.match(floatReg);
+    var ceilArr = new Array()
+    console.log(qtyMatch)
     if (qtyMatch != null) {
-        return qtyMatch;
+        for (let number in qtyMatch){
+            ceilArr.push(Math.ceil(qtyMatch[number]))
+        }
+        console.log(ceilArr)
+        return ceilArr;
 
     }
 }
