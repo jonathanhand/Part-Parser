@@ -91,6 +91,7 @@ function convertPacks(uom, qty) {
         product = Math.ceil(product)
         newQtyArray.push(product)
     }
+    console.log(newQtyArray)
     return newQtyArray
 }
 
