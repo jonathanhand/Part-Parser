@@ -97,9 +97,7 @@ function convertPacks(uom, qty) {
 }
 
 function parseQty(qtyText) {
-    //const digitReg = /(\d{1,7})/gim;
     const floatReg = /(\d+(\.\d+)?)/gim;
-    //const qtyMatch = qtyText.match(digitReg);
     const qtyMatch = qtyText.match(floatReg);
     var ceilArr = new Array()
     var roundLines = ''
@@ -203,8 +201,6 @@ function showQty() {
 //parse the email into arrays
 function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArray, tableCheck) {
     const pattern = /([1-9])(\d{3,4})([AKTNaktn])(\d{1,3})/gim;
-    const patternReg = /([1-9])(\d{3,4})([AKTNaktn])(\d{1,3})/gim;
-    const digit = /(\d{1,7})/;
     const digitAll = /(\d{1,7})/gim;
 
     const partMatch = emailText.match(pattern);
@@ -218,7 +214,7 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
     if (partMatch == null){
         console.log('no parts!')
     }
-    else{
+    else {
     partsWithPlaceholders = [...partMatch]
     if (placeSet.length > 0) {
         for (let line in placeSet) {
@@ -237,26 +233,28 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
     console.log(qtyArray)
     //call functions based on duplicate box
     if (dupCheck == true) {
-        createCSV(setArrayPlace, qtyArray, tableCheck);
-        createLineList(setArrayPlace, ipixCheck, custCheck, custField, tableCheck);
+        var noDupParts = new Array()
+        for (let i in partsWithPlaceholders) 
+        {
+            if (i > 0) {
+                if (partsWithPlaceholders[i] != partsWithPlaceholders[i-1]) {
+                    noDupParts.push(partsWithPlaceholders[i])
+                }
+            }
+            else {
+                noDupParts.push(partsWithPlaceholders[i])
+
+            }
+        }
+        createCSV(noDupParts, qtyArray, tableCheck);
+        createLineList(noDupParts, ipixCheck, custCheck, custField, tableCheck);
     } else {
         createCSV(partsWithPlaceholders, qtyArray, tableCheck);
         createLineList(partsWithPlaceholders, ipixCheck, custCheck, custField, tableCheck);
     }
     duplicateCheck(setArray, partMatch);
 
-    //find the quantity in relation to part number
-    const splitEmail = emailText.split(/[\s,]+/);
-    for (let word in splitEmail) {
-        if (patternReg.test(splitEmail[word]) == true) {
-            if (digit.test(splitEmail[word - 1]) == true) {
-                // console.log("PART: " + splitEmail[word] + " QTY: " + splitEmail[word-1]);
-            } else {
-                //   console.log("PART: " + splitEmail[word] + " QTY: UNKNOWN");
-            }
-        }
-    }
-    }
+}
 }
 //create csv from passed in array
 function createCSV(partMatch, qtyArray, tableCheck) {
