@@ -201,21 +201,53 @@ function showQty() {
 //parse the email into arrays
 function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArray, tableCheck) {
     const pattern = /([1-9])(\d{3,4})([AKTNaktn])(\d{1,3})/gim;
-    const digitAll = /(\d{1,7})/gim;
-
+    const digitAll = /(\d{1,7})/gim; //for placeholder
     const partMatch = emailText.match(pattern);
-    const setMatch = new Set(partMatch);
-    const setArray = [...setMatch]; //no dupe array
 
+    //placeholder code
     const placeVal = document.getElementById('placeField').value;
     var placeMatch = placeVal.match(digitAll)
     const placeS = new Set(placeMatch)
     const placeSet = [...placeS]
+    var noDupParts = new Array()
     if (partMatch == null){
         console.log('no parts!')
     }
     else {
-    partsWithPlaceholders = [...partMatch]
+        //removed duplicates or create new array with all parts depending on checkbox
+        if (dupCheck == true) {
+            var counter = 0
+            for (let i in partMatch) 
+            {
+                console.log(partMatch[i])
+                
+                if (i > 0) {
+                    //after second pn in array
+                    if (partMatch[i] != partMatch[i-1]) {
+                        counter = 0
+                        noDupParts.push(partMatch[i])
+                    }
+                    else {
+                        counter += 1
+                        console.log('equal to last')
+                        console.log(counter % 2)
+                        if (counter % 2 == 0) {
+                            noDupParts.push(partMatch[i])
+                            }
+                    }
+                }
+                else {
+                    //push first pn in array
+                    noDupParts.push(partMatch[i])
+    
+                }
+            }
+        } else {
+            noDupParts = [...partMatch]
+    
+        }
+
+    partsWithPlaceholders = [...noDupParts]
     if (placeSet.length > 0) {
         for (let line in placeSet) {
             lineInt = parseInt(placeSet[line]) - 1
@@ -227,34 +259,14 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
             }
         }
     }
-    const setArrayP = new Set(partsWithPlaceholders)
-    const setArrayPlace = [...setArrayP]
     console.log(partsWithPlaceholders)
     console.log(qtyArray)
+    createCSV(partsWithPlaceholders, qtyArray, tableCheck);
+    createLineList(partsWithPlaceholders, ipixCheck, custCheck, custField, tableCheck);
     //call functions based on duplicate box
-    if (dupCheck == true) {
-        var noDupParts = new Array()
-        for (let i in partsWithPlaceholders) 
-        {
-            if (i > 0) {
-                if (partsWithPlaceholders[i] != partsWithPlaceholders[i-1]) {
-                    noDupParts.push(partsWithPlaceholders[i])
-                }
-            }
-            else {
-                noDupParts.push(partsWithPlaceholders[i])
+    duplicateCheck(noDupParts, partMatch);
 
-            }
-        }
-        createCSV(noDupParts, qtyArray, tableCheck);
-        createLineList(noDupParts, ipixCheck, custCheck, custField, tableCheck);
-    } else {
-        createCSV(partsWithPlaceholders, qtyArray, tableCheck);
-        createLineList(partsWithPlaceholders, ipixCheck, custCheck, custField, tableCheck);
     }
-    duplicateCheck(setArray, partMatch);
-
-}
 }
 //create csv from passed in array
 function createCSV(partMatch, qtyArray, tableCheck) {
