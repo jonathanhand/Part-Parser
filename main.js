@@ -1,4 +1,3 @@
-
 console.log("Created by Jon Hand")
 console.log("Testing thanks to:")
 console.log("Austen Young")
@@ -12,6 +11,7 @@ function clearAll() {
     const lineListField = document.getElementById('lineListField');
     const partCSVField = document.getElementById('partCSVField');
     const tableCSVField = document.getElementById('tableCSVField');
+    const emailField = document.getElementById('emailField');
 
 
     emailField.value = '';
@@ -40,7 +40,6 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
     alert.style.display = "inline-block";
     const emailField = document.getElementById('emailField');
     const dupCheck = document.getElementById('dupCheck').checked;
-    const ipixCheck = document.getElementById('ipixCheck').checked;
     const qtyField = document.getElementById('qtyField');
 
     const uomField = document.getElementById('uomField');
@@ -48,7 +47,6 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
 
     const qtyCheck = document.getElementById('qtyCheck').checked;
     const uomCheck = document.getElementById('uomCheck').checked;
-    //const tableCheck = document.getElementById('tableCheck').checked;
 
 
 
@@ -69,9 +67,9 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
     if (uomArray[0] != -1 && uomArray.length == qtyArray.length) {
         var newQtyArray = convertPacks(uomArray, qtyArray)
         qtyOut(newQtyArray);
-        parseParts(emailField.value, dupCheck, ipixCheck, custCheck, custField, newQtyArray);
+        parseParts(emailField.value, dupCheck, newQtyArray);
     } else {
-        parseParts(emailField.value, dupCheck, ipixCheck, custCheck, custField, qtyArray);
+        parseParts(emailField.value, dupCheck, qtyArray);
     }
 
 });
@@ -199,7 +197,7 @@ function showQty() {
     }
 }
 //parse the email into arrays
-function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArray) {
+function parseParts(emailText, dupCheck, qtyArray) {
     const pattern = /([1-9])(\d{3,4})([AKTNaktn])(\d{1,3})/gim;
     const digitAll = /(\d{1,7})/gim; //for placeholder
     const partMatch = emailText.match(pattern);
@@ -258,7 +256,7 @@ function parseParts(emailText, dupCheck, ipixCheck, custCheck, custField, qtyArr
     console.log(partsWithPlaceholders)
     console.log(qtyArray)
     createCSV(partsWithPlaceholders, qtyArray);
-    createLineList(partsWithPlaceholders, ipixCheck, custCheck, custField);
+    createLineList(partsWithPlaceholders);
     //call functions based on duplicate box
     duplicateCheck(noDupParts, partMatch);
 
@@ -390,24 +388,18 @@ function createCSV(partMatch, qtyArray) {
 
 }
 
-function createLineList(part, ipixCheck, custCheck, custField) {
+function createLineList(part) {
     const lineListField = document.getElementById('lineListField');
     lineListField.value = ''
     let i = 1
     for (let j in part) {
-        if (ipixCheck == true) {
-            lineListField.value += 'Ln ' + i + ":\n" + 'IPIX' + part[j] + '\n'
-        } else if (custCheck.checked == true) {
-            lineListField.value += 'Ln ' + i + ":\n" + custField.value + part[j] + '\n'
-        } else {
             lineListField.value += 'Ln ' + i + " - " + part[j] + '\n'
-        }
         i += 1
-
     }
 
 }
 
+//duplicate alert function
 function duplicateCheck(set, array) {
     let line = 0;
     let duplicateAlerts = ''
@@ -425,11 +417,11 @@ function duplicateCheck(set, array) {
             }
         }
     }
-    // console.log(duplicateAlerts)
 
 }
 
 /*
+//table maker code
 const makeTableBtn = document.getElementById('makeTableBtn').addEventListener('click', function () {
     const revField = document.getElementById('revField');
     //const tableField = document.getElementById('tableField');
