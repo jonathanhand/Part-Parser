@@ -12,14 +12,18 @@ function clearAll() {
     const partCSVField = document.getElementById('partCSVField');
     const tableCSVField = document.getElementById('tableCSVField');
     const emailField = document.getElementById('emailField');
-
+    const uomField = document.getElementById('uomField');
+    const uomConField = document.getElementById('uomConField');
+    const placeField = document.getElementById('placeField');
 
     emailField.value = '';
     qtyField.value = '';
     lineListField.value = '';
     partCSVField.value = '';
     tableCSVField.value = '';
-
+    uomField.value = '';
+    uomConField.value = '';
+    placeField.value = '';
 
 }
 
