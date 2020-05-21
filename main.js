@@ -68,11 +68,24 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
     } else {
         uomArray.push(-1)
     }
-    if (uomArray[0] != -1 && uomArray.length == qtyArray.length) {
-        var newQtyArray = convertPacks(uomArray, qtyArray)
-        qtyOut(newQtyArray);
-        parseParts(emailField.value, dupCheck, newQtyArray);
-    } else {
+
+    if (uomField != '' && uomCheck == true) {
+        if (uomArray.length == qtyArray.length) {
+            var newQtyArray = convertPacks(uomArray, qtyArray)
+            qtyOut(newQtyArray);
+            parseParts(emailField.value, dupCheck, newQtyArray);
+        }
+        else {
+            window.alert ('UOM field does not match Qty field. \n\n Verify that each customer quantity has a matching unit of measure line. \n\n')
+            parseParts(emailField.value, dupCheck, qtyArray);
+        }
+    }
+    //if (uomArray[0] != -1 && uomArray.length == qtyArray.length) {
+        //var newQtyArray = convertPacks(uomArray, qtyArray)
+        //qtyOut(newQtyArray);
+        //parseParts(emailField.value, dupCheck, newQtyArray);
+    //} 
+    else {
         parseParts(emailField.value, dupCheck, qtyArray);
     }
 
@@ -81,7 +94,12 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
 function qtyOut(newQty) {
     var qtyOut = ''
     for (let i in newQty) {
+        if (isNaN(newQty[i])) {
+            qtyOut += '1' + '\n'
+        }
+        else {
         qtyOut += newQty[i] + '\n'
+        }
     }
     uomConField.value = qtyOut
     console.log(qtyOut);
@@ -91,7 +109,9 @@ function convertPacks(uom, qty) {
     var product = 1
     var newQtyArray = new Array()
     for (let index in uom) {
+
         product = qty[index] / uom[index]
+        //round up
         product = Math.ceil(product)
         newQtyArray.push(product)
     }
@@ -128,15 +148,28 @@ function parseUom(uomText) {
     const digitReg = /(\d{1,7})/gim;
     uomLines = uomText.split('\n')
     var uomMatch = new Array()
+    var uomErrorMessage = '';
 
     for (let line in uomLines) {
         uomLines[line] = uomLines[line].trim()
 
         if (uomLines[line] == "Each" || uomLines[line] == "Pairs") {
             uomMatch.push(1);
-        } else {
-            uomMatch.push(parseInt(uomLines[line].match(digitReg)));
+        } 
+        else {
+            let number = parseInt(uomLines[line].match(digitReg))
+            if (isNaN(number) == true) {
+                let errorLine = parseInt(line) + parseInt(1);
+                uomErrorMessage = uomErrorMessage + 'UOM Error on line ' + errorLine + '. Using customer quantity instead.\n\n' 
+                uomMatch.push(1)
+            }
+            else {
+            uomMatch.push(number);
+            }
         }
+    }
+    if (uomErrorMessage != '') {
+        window.alert('' + uomErrorMessage);
     }
     if (uomMatch.length > 0 && isNaN(uomMatch[0]) != true) {
         return uomMatch;
