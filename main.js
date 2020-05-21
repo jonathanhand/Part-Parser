@@ -56,20 +56,25 @@ const getPartsBtn = document.getElementById('getPartsBtn').addEventListener('cli
 
     var uomArray = new Array();
     var qtyArray = new Array();
-    if (qtyField.value != null) {
+    console.log(qtyField.value.trim())
+    console.log(uomField.value.trim())
+    if (qtyField.value.trim() != '') {
+        
         qtyArray = parseQty(qtyField.value);
+        console.log(qtyArray)
     } else {
-        qtyArray = -1
+        console.log('qty -1')
+        qtyArray.push(-1)
     }
     if (uomField.value.trim() != '') {
-
         uomArray = parseUom(uomField.value);
-
+        console.log(uomArray)
     } else {
         uomArray.push(-1)
+        console.log('uom -1')
     }
 
-    if (uomField != '' && uomCheck == true) {
+    if (uomCheck == true) {
         if (uomArray.length == qtyArray.length) {
             var newQtyArray = convertPacks(uomArray, qtyArray)
             qtyOut(newQtyArray);
