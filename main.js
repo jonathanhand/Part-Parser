@@ -315,9 +315,12 @@ function createCSV(partMatch, qtyArray) {
     let indexNum = 0;
 
 
-
+        console.log(qtyArray)
+        console.log(qtyArray.length)
+        console.log(partMatch)
+        console.log(partMatch.length)
         if (qtyCheck.checked == true || uomCheck.checked == true) {
-            if (qtyArray == null) {
+            if (qtyArray[0] == -1) {
                 console.log("qty array is null")
                 //(partMatch.length == qtyArray.length && qtyChecked.checked == true){
                 for (let i in partMatch) {
