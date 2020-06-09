@@ -205,17 +205,22 @@ function showCust() {
 }
 
 function showUom() {
+    var tooltip = document.getElementById("UOMToolTip")
     if (uomCheck.checked == true) {
+        tooltip.style.display = 'inline-block';
         uomDiv.style.display = 'inline-block';
         uomConDiv.style.display = 'inline-block';
         qtyDiv.style.display = 'inline-block';
     } else {
         if (qtyCheck.checked == false) {
+            tooltip.style.display = 'none';
             uomDiv.style.display = 'none';
             //qtyDiv.style.display = 'none';
             uomConDiv.style.display = 'none';
         }
         if (qtyCheck.checked == true) {
+            tooltip.style.display = 'none';
+
             uomDiv.style.display = 'none';
             qtyDiv.style.display = 'inline-block';
             uomConDiv.style.display = 'none';

@@ -53,8 +53,15 @@
     <div class="center-all">
         </br>
         <div>
-            <input type='text' id='placeField' placeholder='List lines that do not have a McMaster-Carr part number'
+            <input type='text' id='placeField' placeholder='Enter placeholder Lines here'
                 size="75"></input>
+        </br>
+                <div class="tooltip">What are placeholders?
+                    <span class="tooltiptext">
+                        This will add in 99999A999 placeholders on the lines entered above.</br>
+                        Enter the line numbers you need placeholders on, separated by spaces</br>
+                       </span>
+                </div> 
             </br>
             </br>
             <input type='checkbox' id='tableCheck' value='tableCheck' style="display:none;"></input>
@@ -99,8 +106,19 @@
                 <textarea rows="10" cols="20" placeholder="Converted quantities will be here."
                     id="uomConField"></textarea>
             </form>
+        </br>
+
         </div>
     </div>
+    <div style="display:none" id="UOMToolTip" class="tooltip">How do I use the Pack Converter?
+        <span class="tooltiptext">
+            1. Copy the part numbers from the "Table View Format" box below.</br>
+            2. Follow the "How do I get to Table View" instructions at the bottome of the page.</br>
+            3. Open Table View and copy the entire Unit of Measure Column.</br>
+            4. Paste the column into the "UOM" box above and click "Get Parts". </br>
+            The quantities in the "Memo Format" output will be updated to the converted quantities.
+           </span>
+    </div> 
         <div>
             <p1 id="alert-text" class="alert-text">Check customer lines with the lines below to ensure line integrity!
             </p1>
